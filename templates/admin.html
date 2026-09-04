@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Cidade Eclipse • Administração</title>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins, sans-serif;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: #000;
+        color: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        left: -250px;
+        top: -250px;
+        background: rgba(0, 0, 255, .10);
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        width: 450px;
+        height: 450px;
+        right: -220px;
+        bottom: -220px;
+        background: rgba(0, 0, 255, .07);
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8%;
+        background: #050505;
+        border-bottom: 1px solid #00004d;
+        z-index: 999;
+    }
+
+    .logo {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .logo span {
+        color: #0000ff;
+        text-shadow: 0 0 15px rgba(0, 0, 255, .35);
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    nav a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 15px;
+        color: #888;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 8px;
+        transition: .3s;
+    }
+
+    nav a i {
+        color: #0000e0;
+        font-size: 13px;
+    }
+
+    nav a:hover {
+        color: #fff;
+        background: #181818;
+        transform: translateY(-1px);
+    }
+
+    .admin-btn {
+        color: #fff !important;
+        background: #0000d9 !important;
+        border: 1px solid #3030ff !important;
+        box-shadow: 0 8px 25px rgba(0, 0, 255, .15);
+    }
+
+    .admin-btn i {
+        color: #fff !important;
+    }
+
+    .nav-highlight {
+        color: #fff !important;
+        background: #0000d9 !important;
+        border: 1px solid #3030ff;
+        box-shadow: 0 8px 25px rgba(0, 0, 255, .12);
+    }
+
+    .nav-highlight i {
+        color: #fff !important;
+    }
+
+
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
+
+    .container {
+        width: 100%;
+        max-width: 1250px;
+        margin: auto;
+        padding: 125px 25px 70px;
+    }
+
+
+    /* =====================================================
+       ALERTAS
+    ===================================================== */
+
+    .alert {
+        padding: 13px 15px;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        font-size: 10px;
+        border: 1px solid;
+    }
+
+    .alert.erro {
+        background: #070725;
+        border-color: #000065;
+        color: #7777ff;
+    }
+
+    .alert.sucesso {
+        background: #071c10;
+        border-color: #16532f;
+        color: #66dd99;
+    }
+
+
+    /* =====================================================
+       TOPO
+    ===================================================== */
+
+    .page-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 25px;
+        margin-bottom: 35px;
+        animation: entrada .7s ease;
+    }
+
+    .page-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .page-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #080821;
+        border: 1px solid #00004d;
+        border-radius: 12px;
+        color: #0000ff;
+        font-size: 21px;
+    }
+
+    .page-title small {
+        display: block;
+        color: #0000ff;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        margin-bottom: 4px;
+    }
+
+    .page-title h1 {
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    .page-description {
+        color: #777;
+        font-size: 11px;
+        margin-top: 3px;
+    }
+
+
+    /* =====================================================
+       ESTATÍSTICAS
+    ===================================================== */
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        padding: 20px;
+        background: #101010;
+        border: 1px solid #252525;
+        border-radius: 12px;
+        transition: .3s;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        border-color: #00004d;
+        background: #090912;
+    }
+
+    .stat-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .stat-icon {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #080821;
+        border: 1px solid #00004d;
+        border-radius: 8px;
+        color: #0000ff;
+        font-size: 15px;
+    }
+
+    .stat-card h3 {
+        font-size: 23px;
+        font-weight: 800;
+    }
+
+    .stat-card p {
+        color: #777;
+        font-size: 10px;
+    }
+
+
+    /* =====================================================
+       GRID
+    ===================================================== */
+
+    .admin-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 18px;
+        margin-bottom: 20px;
+    }
+
+
+    /* =====================================================
+       CARD
+    ===================================================== */
+
+    .card {
+        background: #101010;
+        border: 1px solid #252525;
+        border-radius: 13px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #202020;
+    }
+
+    .card-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .card-header-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #080821;
+        border: 1px solid #00004d;
+        border-radius: 8px;
+        color: #0000ff;
+    }
+
+    .card-header h2 {
+        font-size: 15px;
+    }
+
+    .card-header p {
+        color: #666;
+        font-size: 9px;
+        margin-top: 2px;
+    }
+
+
+    /* =====================================================
+       USUÁRIOS
+    ===================================================== */
+
+    .users {
+        padding: 5px 20px 15px;
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid #1d1d1d;
+    }
+
+    .user:last-child {
+        border-bottom: none;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+    }
+
+    .avatar {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #08081b;
+        border: 1px solid #000045;
+        border-radius: 9px;
+        color: #0000ff;
+    }
+
+    .user-name {
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .user-id {
+        color: #666;
+        font-size: 9px;
+        margin-top: 2px;
+    }
+
+
+    /* =====================================================
+       CARGOS
+    ===================================================== */
+
+    .role {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 9px;
+        border-radius: 6px;
+        font-size: 8px;
+        font-weight: 800;
+        letter-spacing: .5px;
+        text-transform: uppercase;
+    }
+
+    .role.ceo {
+        color: #5555ff;
+        background: #070730;
+        border: 1px solid #000065;
+    }
+
+    .role.fundador {
+        color: #7777ff;
+        background: #070726;
+        border: 1px solid #000057;
+    }
+
+    .role.administrador {
+        color: #8888ff;
+        background: #080823;
+        border: 1px solid #000060;
+    }
+
+    .role.programador {
+        color: #9999ff;
+        background: #090920;
+        border: 1px solid #00004d;
+    }
+
+    .role.civil {
+        color: #aaa;
+        background: #181818;
+        border: 1px solid #303030;
+    }
+
+
+    /* =====================================================
+       AÇÕES
+    ===================================================== */
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: wrap;
+    }
+
+    .action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 8px 11px;
+        background: #181818;
+        border: 1px solid #303030;
+        border-radius: 7px;
+        color: #aaa;
+        text-decoration: none;
+        font-size: 9px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .action:hover {
+        color: #fff;
+        background: #070722;
+        border-color: #000065;
+    }
+
+    .action.red {
+        background: #0000d9;
+        border-color: #3030ff;
+        color: #fff;
+    }
+
+    .action.red:hover {
+        background: #0000b8;
+    }
+
+    .action.danger {
+        color: #5555ff;
+        border-color: #00004d;
+    }
+
+    .action.danger:hover {
+        background: #070730;
+        border-color: #000080;
+    }
+
+
+    /* =====================================================
+       SELECT DE CARGO
+    ===================================================== */
+
+    .cargo-form {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .cargo-select {
+        min-width: 140px;
+        padding: 8px 10px;
+        background: #181818;
+        border: 1px solid #303030;
+        border-radius: 7px;
+        color: #fff;
+        outline: none;
+        font-size: 9px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .cargo-select:hover,
+    .cargo-select:focus {
+        border-color: #0000ff;
+        background: #070720;
+    }
+
+    .cargo-select option {
+        background: #111;
+        color: #fff;
+    }
+
+
+    /* =====================================================
+       HIERARQUIA
+    ===================================================== */
+
+    .permissions {
+        padding: 20px;
+    }
+
+    .permission {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 13px 0;
+        border-bottom: 1px solid #1d1d1d;
+    }
+
+    .permission:last-child {
+        border-bottom: none;
+    }
+
+    .permission-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .permission-icon {
+        width: 33px;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #181818;
+        border: 1px solid #303030;
+        border-radius: 7px;
+        color: #0000ff;
+        font-size: 12px;
+    }
+
+    .permission strong {
+        display: block;
+        font-size: 10px;
+    }
+
+    .permission span {
+        display: block;
+        color: #666;
+        font-size: 8px;
+        margin-top: 2px;
+    }
+
+    .check {
+        color: #4dff9b;
+        font-size: 13px;
+    }
+
+    .cross {
+        color: #4444ff;
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+        padding: 28px 20px;
+        text-align: center;
+        background: #000;
+        border-top: 1px solid #000021;
+        color: #555;
+        font-size: 10px;
+    }
+
+    footer strong {
+        color: #888;
+    }
+
+
+    /* =====================================================
+       ANIMAÇÃO
+    ===================================================== */
+
+    @keyframes entrada {
+
+        from {
+            opacity: 0;
+            transform: translateY(25px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVO
+    ===================================================== */
+
+    @media(max-width: 1100px) {
+
+        .stats {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .admin-grid {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+
+    @media(max-width: 700px) {
+
+        header {
+            padding: 0 20px;
+        }
+
+        nav a span {
+            display: none;
+        }
+
+        nav a {
+            padding: 10px;
+        }
+
+        .container {
+            padding: 110px 15px 50px;
+        }
+
+        .page-header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .stats {
+            grid-template-columns: 1fr;
+        }
+
+        .user {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .actions {
+            width: 100%;
+        }
+
+        .action {
+            flex: 1;
+        }
+
+        .cargo-form {
+            width: 100%;
+        }
+
+        .cargo-select {
+            width: 100%;
+            flex: 1;
+        }
+
+    }
+
+
+    @media(max-width: 500px) {
+
+        .logo {
+            font-size: 24px;
+        }
+
+        .page-title h1 {
+            font-size: 24px;
+        }
+
+        .page-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+<a
+    href="{{ url_for('inicio') }}"
+    class="logo"
+>
+    Cidade <span>Eclipse</span>
+</a>
+
+
+<nav>
+
+    <a href="{{ url_for('inicio') }}">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>Início</span>
+
+    </a>
+
+
+    <a href="{{ url_for('cidade') }}">
+
+        <i class="fa-solid fa-city"></i>
+
+        <span>Cidade</span>
+
+    </a>
+
+
+    <a href="{{ url_for('loja') }}">
+
+        <i class="fa-solid fa-store"></i>
+
+        <span>Loja</span>
+
+    </a>
+
+
+    <a
+        href="{{ discord_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+
+        <i class="fa-brands fa-discord"></i>
+
+        <span>Discord</span>
+
+    </a>
+
+
+    {% if session.get('cargo') in ['Administrador', 'Programador', 'Fundador', 'Ceo'] %}
+
+        <a
+            href="{{ url_for('admin') }}"
+            class="admin-btn"
+        >
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>Admin</span>
+
+        </a>
+
+    {% endif %}
+
+
+    <a
+        href="{{ url_for('painel') }}"
+        class="nav-highlight"
+    >
+
+        <i class="fa-solid fa-gauge-high"></i>
+
+        <span>Painel</span>
+
+    </a>
+
+</nav>
+
+
+</header>
+
+<!-- =========================================================
+     CONTEÚDO
+========================================================= -->
+
+<main class="container">
+
+
+<!-- ALERTAS -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        {% for categoria, mensagem in messages %}
+
+            <div class="alert {{ categoria }}">
+
+                {{ mensagem }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+
+
+<!-- =====================================================
+     CABEÇALHO
+===================================================== -->
+
+<section class="page-header">
+
+    <div class="page-title">
+
+        <div class="page-icon">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+        </div>
+
+        <div>
+
+            <small>CIDADE ECLIPSE</small>
+
+            <h1>Painel Administrativo</h1>
+
+            <p class="page-description">
+
+                Controle e gerenciamento do servidor.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTAGEM DE ADMINISTRADORES
+===================================================== -->
+
+{% set quantidade_admins = namespace(total=0) %}
+
+{% for u in usuarios %}
+
+    {% if u.cargo != 'Civil' %}
+
+        {% set quantidade_admins.total =
+            quantidade_admins.total + 1
+        %}
+
+    {% endif %}
+
+{% endfor %}
+
+
+<!-- =====================================================
+     ESTATÍSTICAS
+===================================================== -->
+
+<section class="stats">
+
+
+    <div class="stat-card">
+
+        <div class="stat-top">
+
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-users"></i>
+
+            </div>
+
+            <h3>
+
+                {{ total_usuarios|default(0) }}
+
+            </h3>
+
+        </div>
+
+        <p>
+            Usuários cadastrados
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-top">
+
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+            </div>
+
+            <h3>
+
+                {{ quantidade_admins.total }}
+
+            </h3>
+
+        </div>
+
+        <p>
+            Administradores
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-top">
+
+            <div class="stat-icon">
+
+                <i class="fa-solid fa-ban"></i>
+
+            </div>
+
+            <h3>
+
+                {{ total_banidos|default(0) }}
+
+            </h3>
+
+        </div>
+
+        <p>
+            Contas banidas
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     USUÁRIOS
+===================================================== -->
+
+<section class="admin-grid">
+
+
+    <div class="card">
+
+
+        <div class="card-header">
+
+            <div class="card-header-left">
+
+                <div class="card-header-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Usuários</h2>
+
+                    <p>
+                        Contas cadastradas na Cidade Eclipse
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="users">
+
+
+            {% if usuarios %}
+
+
+                {% for usuario_lista in usuarios %}
+
+
+                    <div class="user">
+
+
+                        <div class="user-info">
+
+
+                            <div class="avatar">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="user-name">
+
+                                    {{ usuario_lista.usuario }}
+
+                                </div>
+
+                                <div class="user-id">
+
+                                    ID #{{ usuario_lista.id }}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="actions">
+
+
+                            <!-- CARGO ATUAL -->
+
+                            <span class="role
+
+                                {% if usuario_lista.cargo|lower == 'ceo' %}
+
+                                    ceo
+
+                                {% elif usuario_lista.cargo|lower == 'fundador' %}
+
+                                    fundador
+
+                                {% elif usuario_lista.cargo|lower == 'administrador' %}
+
+                                    administrador
+
+                                {% elif usuario_lista.cargo|lower == 'programador' %}
+
+                                    programador
+
+                                {% else %}
+
+                                    civil
+
+                                {% endif %}
+
+                            ">
+
+                                {{ usuario_lista.cargo|default('Civil') }}
+
+                            </span>
+
+
+                            <!-- ALTERAR CARGO -->
+
+                            {% if usuario.cargo in ['Ceo', 'Fundador'] and usuario_lista.id != usuario.id %}
+
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('admin_cargo', usuario_id=usuario_lista.id) }}"
+                                    class="cargo-form"
+                                >
+
+
+                                    <select
+                                        name="cargo"
+                                        class="cargo-select"
+                                        onchange="this.form.submit()"
+                                    >
+
+
+                                        <option
+                                            value=""
+                                            disabled
+                                        >
+
+                                            Alterar cargo
+
+                                        </option>
+
+
+                                        <option
+                                            value="Civil"
+                                            {% if usuario_lista.cargo == 'Civil' %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            Civil
+
+                                        </option>
+
+
+                                        <option
+                                            value="Programador"
+                                            {% if usuario_lista.cargo == 'Programador' %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            Programador
+
+                                        </option>
+
+
+                                        <option
+                                            value="Administrador"
+                                            {% if usuario_lista.cargo == 'Administrador' %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            Administrador
+
+                                        </option>
+
+
+                                        <option
+                                            value="Fundador"
+                                            {% if usuario_lista.cargo == 'Fundador' %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            Fundador
+
+                                        </option>
+
+
+                                        <option
+                                            value="Ceo"
+                                            {% if usuario_lista.cargo == 'Ceo' %}
+                                                selected
+                                            {% endif %}
+                                        >
+
+                                            CEO
+
+                                        </option>
+
+
+                                    </select>
+
+
+                                </form>
+
+
+                            {% endif %}
+
+
+                            <!-- BANIMENTO -->
+
+                            {% if usuario_lista.banido %}
+
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for('admin_desbanir', usuario_id=usuario_lista.id) }}"
+                                >
+
+
+                                    <button
+                                        type="submit"
+                                        class="action"
+                                        onclick="return confirm('Deseja realmente desbanir este usuário?')"
+                                    >
+
+                                        <i class="fa-solid fa-unlock"></i>
+
+                                        Desbanir
+
+                                    </button>
+
+
+                                </form>
+
+
+                            {% else %}
+
+
+                                {% if usuario_lista.id != usuario.id %}
+
+
+                                    <form
+                                        method="POST"
+                                        action="{{ url_for('admin_banir', usuario_id=usuario_lista.id) }}"
+                                    >
+
+
+                                        <button
+                                            type="submit"
+                                            class="action danger"
+                                            onclick="return confirm('Deseja realmente banir este usuário?')"
+                                        >
+
+                                            <i class="fa-solid fa-ban"></i>
+
+                                            Banir
+
+                                        </button>
+
+
+                                    </form>
+
+
+                                {% endif %}
+
+
+                            {% endif %}
+
+
+                            <!-- ATIVAR / DESATIVAR -->
+
+                            {% if not usuario_lista.banido %}
+
+
+                                {% if usuario_lista.ativo %}
+
+
+                                    {% if usuario_lista.id != usuario.id %}
+
+
+                                        <form
+                                            method="POST"
+                                            action="{{ url_for('admin_desativar', usuario_id=usuario_lista.id) }}"
+                                        >
+
+
+                                            <button
+                                                type="submit"
+                                                class="action"
+                                                onclick="return confirm('Deseja realmente desativar este usuário?')"
+                                            >
+
+                                                <i class="fa-solid fa-user-slash"></i>
+
+                                                Desativar
+
+                                            </button>
+
+
+                                        </form>
+
+
+                                    {% endif %}
+
+
+                                {% else %}
+
+
+                                    <form
+                                        method="POST"
+                                        action="{{ url_for('admin_ativar', usuario_id=usuario_lista.id) }}"
+                                    >
+
+
+                                        <button
+                                            type="submit"
+                                            class="action"
+                                        >
+
+                                            <i class="fa-solid fa-user-check"></i>
+
+                                            Ativar
+
+                                        </button>
+
+
+                                    </form>
+
+
+                                {% endif %}
+
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <div style="
+                    padding:30px;
+                    text-align:center;
+                    color:#666;
+                    font-size:10px;
+                ">
+
+
+                    <i
+                        class="fa-solid fa-users-slash"
+                        style="
+                            display:block;
+                            font-size:25px;
+                            color:#000055;
+                            margin-bottom:10px;
+                        "
+                    ></i>
+
+
+                    Nenhum usuário encontrado.
+
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         HIERARQUIA
+    ================================================= -->
+
+    <div class="card">
+
+
+        <div class="card-header">
+
+
+            <div class="card-header-left">
+
+
+                <div class="card-header-icon">
+
+                    <i class="fa-solid fa-user-lock"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>Hierarquia</h2>
+
+                    <p>
+                        Cargos administrativos
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="permissions">
+
+
+            <div class="permission">
+
+
+                <div class="permission-info">
+
+                    <div class="permission-icon">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Civil</strong>
+
+                        <span>
+                            Usuário comum
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <i class="fa-solid fa-xmark cross"></i>
+
+
+            </div>
+
+
+            <div class="permission">
+
+
+                <div class="permission-info">
+
+                    <div class="permission-icon">
+
+                        <i class="fa-solid fa-code"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Programador</strong>
+
+                        <span>
+                            Funções técnicas
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <i class="fa-solid fa-check check"></i>
+
+
+            </div>
+
+
+            <div class="permission">
+
+
+                <div class="permission-info">
+
+                    <div class="permission-icon">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Administrador</strong>
+
+                        <span>
+                            Administração do servidor
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <i class="fa-solid fa-check check"></i>
+
+
+            </div>
+
+
+            <div class="permission">
+
+
+                <div class="permission-info">
+
+                    <div class="permission-icon">
+
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>Fundador</strong>
+
+                        <span>
+                            Administração avançada
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <i class="fa-solid fa-check check"></i>
+
+
+            </div>
+
+
+            <div class="permission">
+
+
+                <div class="permission-info">
+
+                    <div class="permission-icon">
+
+                        <i class="fa-solid fa-crown"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>CEO</strong>
+
+                        <span>
+                            Acesso total ao sistema
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <i class="fa-solid fa-check check"></i>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     LOG ADMINISTRATIVO
+===================================================== -->
+
+<section
+    class="card"
+    style="margin-top:20px;"
+>
+
+
+    <div class="card-header">
+
+
+        <div class="card-header-left">
+
+
+            <div class="card-header-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+
+            <div>
+
+                <h2>Atividade administrativa</h2>
+
+                <p>
+                    Últimas ações realizadas no painel
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="users">
+
+
+        {% if logs %}
+
+
+            {% for log in logs[:10] %}
+
+
+                <div class="user">
+
+
+                    <div class="user-info">
+
+
+                        <div class="avatar">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="user-name">
+
+                                {{ log.usuario }}
+
+                            </div>
+
+                            <div class="user-id">
+
+                                {{ log.criado_em }}
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div style="
+                        text-align:right;
+                        max-width:55%;
+                    ">
+
+
+                        <div style="
+                            color:#aaa;
+                            font-size:9px;
+                            font-weight:700;
+                        ">
+
+                            {{ log.acao }}
+
+                        </div>
+
+
+                        {% if log.alvo %}
+
+
+                            <div style="
+                                color:#555;
+                                font-size:8px;
+                                margin-top:3px;
+                            ">
+
+                                Alvo: {{ log.alvo }}
+
+                            </div>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div style="
+                padding:30px;
+                text-align:center;
+                color:#666;
+                font-size:10px;
+            ">
+
+
+                <i
+                    class="fa-solid fa-clock-rotate-left"
+                    style="
+                        display:block;
+                        font-size:25px;
+                        color:#000055;
+                        margin-bottom:10px;
+                    "
+                ></i>
+
+
+                Nenhuma atividade registrada.
+
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     AÇÕES RÁPIDAS
+===================================================== -->
+
+<section
+    class="card"
+    style="margin-top:20px;"
+>
+
+
+    <div class="card-header">
+
+
+        <div class="card-header-left">
+
+
+            <div class="card-header-icon">
+
+                <i class="fa-solid fa-bolt"></i>
+
+            </div>
+
+
+            <div>
+
+                <h2>Ações rápidas</h2>
+
+                <p>
+                    Atalhos administrativos
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div style="
+        padding:20px;
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+    ">
+
+
+        <a
+            href="{{ url_for('painel') }}"
+            class="action"
+        >
+
+            <i class="fa-solid fa-gauge-high"></i>
+
+            Painel
+
+        </a>
+
+
+        <a
+            href="{{ url_for('cidade') }}"
+            class="action"
+        >
+
+            <i class="fa-solid fa-city"></i>
+
+            Cidade
+
+        </a>
+
+
+        <a
+            href="{{ url_for('loja') }}"
+            class="action"
+        >
+
+            <i class="fa-solid fa-store"></i>
+
+            Loja
+
+        </a>
+
+
+        <a
+            href="{{ url_for('logout') }}"
+            class="action danger"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Sair
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+
+<strong>Cidade Eclipse RPG</strong>
+
+<br><br>
+
+— Painel administrativo.
+
+<br><br>
+
+© 2026 Cidade Eclipse RPG — Todos os direitos reservados.
+
+
+</footer>
+
+</body>
+
+</html>

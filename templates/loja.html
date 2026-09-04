@@ -1,0 +1,2952 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+name="description"
+content="Cidade Eclipse RPG — Loja oficial com itens, vantagens e produtos exclusivos."
+>
+
+<meta
+name="theme-color"
+content="#080808"
+>
+
+<meta
+name="author"
+content="Cidade Eclipse RPG"
+>
+
+<meta
+name="robots"
+content="index, follow"
+>
+
+<title>Cidade Eclipse — Loja</title>
+
+<!-- FAVICON -->
+
+<link
+    rel="icon"
+    type="image/png"
+    href="{{ url_for('static', filename='img/favicon.png') }}"
+>
+
+<!-- GOOGLE FONT -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<!-- FONT AWESOME -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+> 
+ 
+ 
+<style> 
+ 
+    * { 
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
+        font-family: "Poppins", sans-serif; 
+    } 
+ 
+    html { 
+        scroll-behavior: smooth; 
+    } 
+ 
+    body { 
+        background: #080808; 
+        color: #ffffff; 
+        font-family: "Poppins", sans-serif; 
+        overflow-x: hidden; 
+    } 
+ 
+    a { 
+        color: inherit; 
+        text-decoration: none; 
+    } 
+ 
+ 
+    /* ================================================= 
+       HEADER / NAVBAR 
+    ================================================= */ 
+ 
+    header { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 76px; 
+ 
+        display: flex; 
+        align-items: center; 
+        justify-content: space-between; 
+ 
+        padding: 0 6%; 
+ 
+        background: rgba(7,7,7,.94); 
+ 
+        backdrop-filter: blur(18px); 
+        -webkit-backdrop-filter: blur(18px); 
+ 
+        border-bottom: 1px solid rgba(0, 102, 255, .16); 
+ 
+        box-shadow: 0 10px 40px rgba(0,0,0,.35); 
+ 
+        z-index: 9999; 
+    } 
+ 
+ 
+    /* ================================================= 
+       LOGO 
+    ================================================= */ 
+ 
+    .brand { 
+        display: inline-flex; 
+        align-items: center; 
+ 
+        color: #ffffff; 
+ 
+        font-size: 27px; 
+        font-weight: 900; 
+ 
+        letter-spacing: -1.5px; 
+ 
+        white-space: nowrap; 
+ 
+        transition: .3s ease; 
+    } 
+ 
+    .brand span { 
+        color: #0000FF; 
+ 
+        margin-left: 4px; 
+ 
+        text-shadow: 
+            0 0 18px rgba(0,0,255,.35); 
+    } 
+ 
+    .brand:hover { 
+        transform: translateY(-1px); 
+    } 
+ 
+    .brand-icon { 
+        display: none; 
+    } 
+ 
+    .brand-text { 
+        font-size: inherit; 
+        font-weight: inherit; 
+        letter-spacing: inherit; 
+    } 
+ 
+    .brand-subtitle { 
+        display: none; 
+    } 
+ 
+ 
+    /* ================================================= 
+       NAVEGAÇÃO 
+    ================================================= */ 
+ 
+    .main-nav { 
+        display: flex; 
+        align-items: center; 
+        gap: 5px; 
+    } 
+ 
+    .main-nav a { 
+        position: relative; 
+ 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+ 
+        gap: 8px; 
+ 
+        min-height: 40px; 
+ 
+        padding: 9px 13px; 
+ 
+        color: #777777; 
+ 
+        border: 1px solid transparent; 
+        border-radius: 8px; 
+ 
+        font-size: 11px; 
+        font-weight: 700; 
+ 
+        transition: .3s ease; 
+    } 
+ 
+    .main-nav a i { 
+        color: #0000FF; 
+        font-size: 12px; 
+ 
+        transition: .3s ease; 
+    } 
+ 
+    .main-nav a:hover { 
+        color: #ffffff; 
+ 
+        background: #151515; 
+ 
+        border-color: #292929; 
+ 
+        transform: translateY(-1px); 
+    } 
+ 
+    .main-nav a:hover i { 
+        color: #0000FF; 
+    } 
+ 
+ 
+    /* ================================================= 
+       LINK ATIVO 
+    ================================================= */ 
+ 
+    .main-nav a.active { 
+        color: #ffffff; 
+ 
+        background: 
+            linear-gradient( 
+                135deg, 
+                #070721, 
+                #050513 
+            ); 
+ 
+        border-color: #0000FF; 
+ 
+        box-shadow: 
+            inset 0 0 20px rgba(0,0,255,.04), 
+            0 5px 20px rgba(0,0,0,.2); 
+    } 
+ 
+    .main-nav a.active::after { 
+        content: ""; 
+ 
+        position: absolute; 
+ 
+        left: 14px; 
+        right: 14px; 
+ 
+        bottom: -1px; 
+ 
+        height: 2px; 
+ 
+        background: #0000FF; 
+ 
+        border-radius: 5px; 
+ 
+        box-shadow: 
+            0 0 12px rgba(0,0,255,.65); 
+    } 
+ 
+    .main-nav a.active i { 
+        color: #0000FF; 
+    } 
+ 
+ 
+    /* ================================================= 
+       ADMIN 
+    ================================================= */ 
+ 
+    .nav-admin { 
+        color: #ffffff !important; 
+ 
+        background: #151515 !important; 
+ 
+        border-color: #0000FF !important; 
+    } 
+ 
+    .nav-admin i { 
+        color: #0000FF !important; 
+    } 
+ 
+    .nav-admin:hover { 
+        background: #070725 !important; 
+        border-color: #0000FF !important; 
+    } 
+ 
+ 
+    /* ================================================= 
+       PAINEL / ENTRAR 
+    ================================================= */ 
+ 
+    .nav-primary { 
+        color: #ffffff !important; 
+ 
+        background: 
+            linear-gradient( 
+                135deg, 
+                #0000FF, 
+                #0000FF 
+            ) !important; 
+ 
+        border-color: #0000FF !important; 
+ 
+        box-shadow: 
+            0 8px 25px rgba(0,0,255,.15); 
+    } 
+ 
+    .nav-primary i { 
+        color: #ffffff !important; 
+    } 
+ 
+    .nav-primary:hover { 
+        background: 
+            linear-gradient( 
+                135deg, 
+                #0000FF, 
+                #0000FF 
+            ) !important; 
+ 
+        border-color: #0000FF !important; 
+ 
+        transform: translateY(-2px); 
+    } 
+ 
+ 
+    /* ================================================= 
+       HERO DA LOJA 
+    ================================================= */ 
+ 
+    .shop-hero { 
+        position: relative; 
+ 
+        min-height: 620px; 
+ 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+ 
+        text-align: center; 
+ 
+        padding: 150px 6% 100px; 
+ 
+        overflow: hidden; 
+    } 
+ 
+    .shop-hero::before { 
+        content: ""; 
+ 
+        position: absolute; 
+ 
+        width: 700px; 
+        height: 700px; 
+ 
+        background: 
+            radial-gradient( 
+                circle, 
+                rgba(0,0,255,0.13), 
+                transparent 68% 
+            ); 
+ 
+        top: -300px; 
+        left: 50%; 
+ 
+        transform: translateX(-50%); 
+    } 
+ 
+    .shop-hero-content { 
+        position: relative; 
+ 
+        max-width: 850px; 
+ 
+        z-index: 2; 
+    } 
+ 
+    .status-pill { 
+        display: inline-flex; 
+ 
+        align-items: center; 
+ 
+        gap: 9px; 
+ 
+        padding: 8px 14px; 
+ 
+        margin-bottom: 25px; 
+ 
+        border: 1px solid rgba(0,0,255,0.25); 
+ 
+        border-radius: 50px; 
+ 
+        background: rgba(0,0,255,0.07); 
+ 
+        color: #cfcfcf; 
+ 
+        font-size: 10px; 
+ 
+        font-weight: 600; 
+ 
+        letter-spacing: 1.5px; 
+    } 
+ 
+    .status-dot { 
+        width: 7px; 
+        height: 7px; 
+ 
+        border-radius: 50%; 
+ 
+        background: #0000FF; 
+ 
+        box-shadow: 0 0 12px #0000FF; 
+    } 
+ 
+    .shop-title { 
+        font-size: clamp(45px, 7vw, 82px); 
+ 
+        line-height: 1.05; 
+ 
+        font-weight: 800; 
+ 
+        letter-spacing: -3px; 
+ 
+        margin-bottom: 25px; 
+    } 
+ 
+    .shop-title .white { 
+        display: block; 
+    } 
+ 
+    .shop-title .red { 
+        display: block; 
+ 
+        color: #0000FF; 
+    } 
+ 
+    .shop-description { 
+        max-width: 680px; 
+ 
+        margin: auto; 
+ 
+        color: #909090; 
+ 
+        font-size: 15px; 
+ 
+        line-height: 1.9; 
+    } 
+ 
+ 
+    /* ================================================= 
+       BOTÕES 
+    ================================================= */ 
+ 
+    .hero-actions { 
+        display: flex; 
+ 
+        justify-content: center; 
+ 
+        gap: 12px; 
+ 
+        margin-top: 35px; 
+ 
+        flex-wrap: wrap; 
+    } 
+ 
+    .button { 
+        display: inline-flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        gap: 9px; 
+ 
+        min-height: 48px; 
+ 
+        padding: 0 22px; 
+ 
+        border-radius: 9px; 
+ 
+        font-size: 12px; 
+ 
+        font-weight: 700; 
+ 
+        letter-spacing: .3px; 
+ 
+        transition: .25s; 
+    } 
+ 
+    .button-primary { 
+        background: #0000FF; 
+ 
+        color: #ffffff; 
+ 
+        box-shadow: 
+            0 10px 35px rgba(0,0,255,0.16); 
+    } 
+ 
+    .button-primary:hover { 
+        background: #0000FF; 
+ 
+        transform: translateY(-2px); 
+    } 
+ 
+    .button-secondary { 
+        border: 1px solid rgba(255,255,255,0.10); 
+ 
+        background: rgba(255,255,255,0.03); 
+ 
+        color: #ffffff; 
+    } 
+ 
+    .button-secondary:hover { 
+        border-color: rgba(0,0,255,0.35); 
+ 
+        background: rgba(0,0,255,0.06); 
+ 
+        transform: translateY(-2px); 
+    } 
+ 
+ 
+    /* ================================================= 
+       DIVISOR 
+    ================================================= */ 
+ 
+    .section-divider { 
+        width: 88%; 
+ 
+        max-width: 1300px; 
+ 
+        height: 1px; 
+ 
+        margin: 0 auto; 
+ 
+        background: rgba(255,255,255,0.06); 
+    } 
+ 
+ 
+    /* ================================================= 
+       SECTION 
+    ================================================= */ 
+ 
+    .section { 
+        width: 88%; 
+ 
+        max-width: 1300px; 
+ 
+        margin: auto; 
+ 
+        padding: 110px 0; 
+    } 
+ 
+    .section-header { 
+        max-width: 700px; 
+ 
+        margin-bottom: 35px; 
+    } 
+ 
+    .section-kicker { 
+        display: block; 
+ 
+        margin-bottom: 12px; 
+ 
+        color: #0000FF; 
+ 
+        font-size: 10px; 
+ 
+        font-weight: 700; 
+ 
+        letter-spacing: 2px; 
+    } 
+ 
+    .section-title { 
+        font-size: clamp(32px, 4vw, 52px); 
+ 
+        line-height: 1.15; 
+ 
+        letter-spacing: -1.5px; 
+ 
+        margin-bottom: 17px; 
+    } 
+ 
+    .section-description { 
+        color: #777; 
+ 
+        font-size: 14px; 
+ 
+        line-height: 1.8; 
+    } 
+ 
+ 
+    /* ================================================= 
+       ABAS DA LOJA 
+    ================================================= */ 
+ 
+    .store-tabs { 
+        display: flex; 
+ 
+        align-items: center; 
+ 
+        gap: 10px; 
+ 
+        margin-bottom: 35px; 
+ 
+        flex-wrap: wrap; 
+    } 
+ 
+    .store-tab { 
+        display: inline-flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        gap: 9px; 
+ 
+        min-height: 45px; 
+ 
+        padding: 0 18px; 
+ 
+        border: 1px solid rgba(255,255,255,0.08); 
+ 
+        border-radius: 9px; 
+ 
+        background: #0d0d0d; 
+ 
+        color: #777; 
+ 
+        font-size: 11px; 
+ 
+        font-weight: 700; 
+ 
+        cursor: pointer; 
+ 
+        transition: .25s; 
+    } 
+ 
+    .store-tab i { 
+        color: #0000FF; 
+ 
+        font-size: 13px; 
+    } 
+ 
+    .store-tab:hover { 
+        color: #ffffff; 
+ 
+        background: #111111; 
+ 
+        border-color: rgba(0,0,255,0.25); 
+ 
+        transform: translateY(-2px); 
+    } 
+ 
+    .store-tab.active { 
+        color: #ffffff; 
+ 
+        background: 
+            linear-gradient( 
+                135deg, 
+                #070721, 
+                #050513 
+            ); 
+ 
+        border-color: #0000FF; 
+ 
+        box-shadow: 
+            0 8px 25px rgba(0,0,255,.10); 
+    } 
+ 
+    .store-tab.active i { 
+        color: #0000FF; 
+    } 
+ 
+ 
+    /* ================================================= 
+       PRODUTOS 
+    ================================================= */ 
+ 
+    .products-grid { 
+        display: grid; 
+ 
+        grid-template-columns: 
+            repeat(3, minmax(0, 1fr)); 
+ 
+        gap: 20px; 
+    } 
+ 
+    .product-card { 
+        position: relative; 
+ 
+        padding: 30px; 
+ 
+        min-height: 420px; 
+ 
+        display: flex; 
+ 
+        flex-direction: column; 
+ 
+        background: #0d0d0d; 
+ 
+        border: 1px solid rgba(255,255,255,0.07); 
+ 
+        border-radius: 16px; 
+ 
+        overflow: hidden; 
+ 
+        transition: .3s; 
+    } 
+ 
+    .product-card.hidden { 
+        display: none; 
+    } 
+ 
+    .product-card::before { 
+        content: ""; 
+ 
+        position: absolute; 
+ 
+        top: 0; 
+        left: 0; 
+ 
+        width: 100%; 
+        height: 2px; 
+ 
+        background: #0000FF; 
+ 
+        transform: scaleX(0); 
+ 
+        transform-origin: left; 
+ 
+        transition: .3s; 
+    } 
+ 
+    .product-card:hover { 
+        transform: translateY(-6px); 
+ 
+        border-color: rgba(0,0,255,0.25); 
+ 
+        background: #101010; 
+ 
+        box-shadow: 
+            0 20px 50px rgba(0,0,0,.30); 
+    } 
+ 
+    .product-card:hover::before { 
+        transform: scaleX(1); 
+    } 
+ 
+    .product-icon { 
+        width: 60px; 
+        height: 60px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        margin-bottom: 25px; 
+ 
+        border-radius: 14px; 
+ 
+        background: rgba(0,0,255,0.10); 
+ 
+        border: 1px solid rgba(0,0,255,0.18); 
+ 
+        color: #0000FF; 
+ 
+        font-size: 22px; 
+    } 
+ 
+    .product-tag { 
+        color: #0000FF; 
+ 
+        font-size: 9px; 
+ 
+        font-weight: 700; 
+ 
+        letter-spacing: 1.5px; 
+ 
+        margin-bottom: 9px; 
+    } 
+ 
+    .product-card h3 { 
+        font-size: 21px; 
+ 
+        margin-bottom: 12px; 
+ 
+        font-weight: 700; 
+    } 
+ 
+    .product-card p { 
+        color: #777; 
+ 
+        font-size: 13px; 
+ 
+        line-height: 1.8; 
+ 
+        margin-bottom: 25px; 
+    } 
+ 
+    .product-separator { 
+        width: 100%; 
+        height: 1px; 
+ 
+        background: rgba(255,255,255,0.06); 
+ 
+        margin-bottom: 18px; 
+    } 
+ 
+    .price-label { 
+        color: #666; 
+ 
+        font-size: 10px; 
+ 
+        text-transform: uppercase; 
+ 
+        letter-spacing: 1px; 
+ 
+        margin-bottom: 3px; 
+    } 
+ 
+    .price { 
+        color: #ffffff; 
+ 
+        font-size: 28px; 
+ 
+        font-weight: 800; 
+ 
+        margin-bottom: 22px; 
+    } 
+ 
+    .price span { 
+        color: #0000FF; 
+ 
+        font-size: 14px; 
+ 
+        margin-right: 3px; 
+    } 
+ 
+    .buy { 
+        margin-top: auto; 
+ 
+        width: 100%; 
+ 
+        min-height: 47px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        gap: 9px; 
+ 
+        border-radius: 9px; 
+ 
+        background: #0000FF; 
+ 
+        color: #ffffff; 
+ 
+        font-size: 11px; 
+ 
+        font-weight: 700; 
+ 
+        letter-spacing: .5px; 
+ 
+        transition: .25s; 
+    } 
+ 
+    .buy:hover { 
+        background: #0000FF; 
+ 
+        transform: translateY(-2px); 
+ 
+        box-shadow: 
+            0 10px 30px rgba(0,0,255,0.18); 
+    } 
+ 
+ 
+    /* ================================================= 
+       VEÍCULO PERSONALIZADO — RAINBOW / RARÍSSIMO 
+    ================================================= */ 
+ 
+    .product-card.custom-vehicle { 
+        position: relative; 
+ 
+        border: 2px solid transparent; 
+ 
+        background: 
+            linear-gradient(#0d0d0d, #0d0d0d) padding-box, 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ) border-box; 
+ 
+        background-size: 
+            100% 100%, 
+            500% 100%; 
+ 
+        animation: 
+            rainbowBorder 5s linear infinite, 
+            rarePulse 2.5s ease-in-out infinite; 
+ 
+        box-shadow: 
+            0 0 20px rgba(255,0,0,.12), 
+            0 0 40px rgba(0,255,255,.08), 
+            0 0 70px rgba(255,0,255,.06); 
+    } 
+ 
+    .product-card.custom-vehicle::after { 
+        content: ""; 
+ 
+        position: absolute; 
+ 
+        inset: -4px; 
+ 
+        z-index: -1; 
+ 
+        border-radius: 18px; 
+ 
+        background: 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ); 
+ 
+        background-size: 500% 100%; 
+ 
+        filter: blur(20px); 
+ 
+        opacity: .32; 
+ 
+        animation: 
+            rainbowGlowBackground 5s linear infinite; 
+    } 
+ 
+    .product-card.custom-vehicle::before { 
+        transform: scaleX(1); 
+ 
+        background: 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ); 
+ 
+        background-size: 500% 100%; 
+ 
+        animation: 
+            rainbowLine 2.5s linear infinite; 
+ 
+        z-index: 3; 
+    } 
+ 
+    .product-card.custom-vehicle:hover { 
+        transform: translateY(-9px) scale(1.018); 
+ 
+        border-color: transparent; 
+ 
+        background: 
+            linear-gradient(#111111, #111111) padding-box, 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ) border-box; 
+ 
+        background-size: 
+            100% 100%, 
+            500% 100%; 
+ 
+        animation: 
+            rainbowBorder 3s linear infinite, 
+            rarePulseHover 1.5s ease-in-out infinite; 
+ 
+        box-shadow: 
+            0 0 35px rgba(255,0,255,.30), 
+            0 0 65px rgba(0,255,255,.20), 
+            0 25px 75px rgba(0,0,0,.50); 
+    } 
+ 
+    .custom-vehicle .product-icon { 
+        background: 
+            linear-gradient( 
+                135deg, 
+                rgba(255,0,0,.18), 
+                rgba(255,255,0,.16), 
+                rgba(0,255,0,.16), 
+                rgba(0,255,255,.18), 
+                rgba(0,0,255,.18), 
+                rgba(255,0,255,.18) 
+            ); 
+ 
+        background-size: 500% 500%; 
+ 
+        border: 1px solid rgba(255,255,255,.25); 
+ 
+        color: #ffffff; 
+ 
+        box-shadow: 
+            0 0 20px rgba(0,255,255,.15), 
+            0 0 35px rgba(255,0,255,.10); 
+ 
+        animation: 
+            rainbowIcon 4s linear infinite; 
+    } 
+ 
+    .custom-vehicle .product-tag { 
+        background: 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ); 
+ 
+        background-size: 500% 100%; 
+ 
+        -webkit-background-clip: text; 
+        background-clip: text; 
+ 
+        -webkit-text-fill-color: transparent; 
+ 
+        animation: rainbowText 3s linear infinite; 
+    } 
+ 
+    .custom-vehicle h3 { 
+        background: 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ); 
+ 
+        background-size: 500% 100%; 
+ 
+        -webkit-background-clip: text; 
+        background-clip: text; 
+ 
+        -webkit-text-fill-color: transparent; 
+ 
+        animation: rainbowText 3s linear infinite; 
+ 
+        font-size: 23px; 
+ 
+        letter-spacing: -.5px; 
+ 
+        text-shadow: 
+            0 0 18px rgba(255,0,255,.12); 
+    } 
+ 
+    .custom-vehicle .price { 
+        background: 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ); 
+ 
+        background-size: 500% 100%; 
+ 
+        -webkit-background-clip: text; 
+        background-clip: text; 
+ 
+        -webkit-text-fill-color: transparent; 
+ 
+        animation: rainbowText 3s linear infinite; 
+    } 
+ 
+    .custom-vehicle .price span { 
+        color: #ffffff; 
+ 
+        background: 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ); 
+ 
+        background-size: 500% 100%; 
+ 
+        -webkit-background-clip: text; 
+        background-clip: text; 
+ 
+        -webkit-text-fill-color: transparent; 
+ 
+        animation: rainbowText 3s linear infinite; 
+    } 
+ 
+    .custom-vehicle .buy { 
+        background: 
+            linear-gradient( 
+                90deg, 
+                #ff0000, 
+                #ff7300, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #008cff, 
+                #0000ff, 
+                #8a2be2, 
+                #ff00ff, 
+                #ff0000 
+            ); 
+ 
+        background-size: 500% 100%; 
+ 
+        animation: rainbowButton 3s linear infinite; 
+ 
+        border: none; 
+ 
+        box-shadow: 
+            0 0 18px rgba(255,0,255,.16), 
+            0 0 30px rgba(0,255,255,.08); 
+    } 
+ 
+    .custom-vehicle .buy:hover { 
+        box-shadow: 
+            0 0 30px rgba(255,0,255,.35), 
+            0 0 55px rgba(0,255,255,.22), 
+            0 10px 35px rgba(0,0,0,.30); 
+    } 
+ 
+    @keyframes rainbowBorder { 
+ 
+        0% { 
+            background-position: 0% 50%, 0% 50%; 
+        } 
+ 
+        50% { 
+            background-position: 0% 50%, 100% 50%; 
+        } 
+ 
+        100% { 
+            background-position: 0% 50%, 0% 50%; 
+        } 
+ 
+    } 
+ 
+    @keyframes rainbowLine { 
+ 
+        0% { 
+            background-position: 0% 50%; 
+        } 
+ 
+        100% { 
+            background-position: 500% 50%; 
+        } 
+ 
+    } 
+ 
+    @keyframes rainbowText { 
+ 
+        0% { 
+            background-position: 0% 50%; 
+        } 
+ 
+        100% { 
+            background-position: 500% 50%; 
+        } 
+ 
+    } 
+ 
+    @keyframes rainbowButton { 
+ 
+        0% { 
+            background-position: 0% 50%; 
+        } 
+ 
+        100% { 
+            background-position: 500% 50%; 
+        } 
+ 
+    } 
+ 
+    @keyframes rainbowGlowBackground { 
+ 
+        0% { 
+            background-position: 0% 50%; 
+            opacity: .18; 
+        } 
+ 
+        50% { 
+            background-position: 100% 50%; 
+            opacity: .40; 
+        } 
+ 
+        100% { 
+            background-position: 0% 50%; 
+            opacity: .18; 
+        } 
+ 
+    } 
+ 
+    @keyframes rainbowIcon { 
+ 
+        0% { 
+            background-position: 0% 0%; 
+        } 
+ 
+        50% { 
+            background-position: 100% 100%; 
+        } 
+ 
+        100% { 
+            background-position: 0% 0%; 
+        } 
+ 
+    } 
+ 
+    @keyframes rarePulse { 
+ 
+        0%, 
+        100% { 
+            box-shadow: 
+                0 0 20px rgba(255,0,0,.12), 
+                0 0 40px rgba(0,255,255,.08), 
+                0 0 70px rgba(255,0,255,.06); 
+        } 
+ 
+        50% { 
+            box-shadow: 
+                0 0 32px rgba(255,0,0,.22), 
+                0 0 60px rgba(0,255,255,.16), 
+                0 0 95px rgba(255,0,255,.15); 
+        } 
+ 
+    } 
+ 
+    @keyframes rarePulseHover { 
+ 
+        0%, 
+        100% { 
+            box-shadow: 
+                0 0 30px rgba(255,0,255,.20), 
+                0 0 55px rgba(0,255,255,.12), 
+                0 25px 70px rgba(0,0,0,.50); 
+        } 
+ 
+        50% { 
+            box-shadow: 
+                0 0 50px rgba(255,0,255,.40), 
+                0 0 80px rgba(0,255,255,.25), 
+                0 25px 85px rgba(0,0,0,.55); 
+        } 
+ 
+    } 
+ 
+ 
+    /* ================================================= 
+       BENEFÍCIOS 
+    ================================================= */ 
+ 
+    .benefits { 
+        display: grid; 
+ 
+        grid-template-columns: 
+            repeat(3, minmax(0, 1fr)); 
+ 
+        gap: 20px; 
+    } 
+ 
+    .benefit { 
+        padding: 30px; 
+ 
+        background: #0d0d0d; 
+ 
+        border: 1px solid rgba(255,255,255,0.06); 
+ 
+        border-radius: 15px; 
+    } 
+ 
+    .benefit-icon { 
+        width: 48px; 
+        height: 48px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        margin-bottom: 20px; 
+ 
+        border-radius: 12px; 
+ 
+        color: #0000FF; 
+ 
+        background: rgba(0,0,255,0.09); 
+    } 
+ 
+    .benefit h3 { 
+        margin-bottom: 10px; 
+ 
+        font-size: 16px; 
+    } 
+ 
+    .benefit p { 
+        color: #707070; 
+ 
+        font-size: 12px; 
+ 
+        line-height: 1.8; 
+    } 
+ 
+ 
+    /* ================================================= 
+       COMO COMPRAR 
+    ================================================= */ 
+ 
+    .steps { 
+        display: grid; 
+ 
+        grid-template-columns: 
+            repeat(3, minmax(0, 1fr)); 
+ 
+        gap: 20px; 
+    } 
+ 
+    .step { 
+        position: relative; 
+ 
+        padding: 30px; 
+ 
+        min-height: 240px; 
+ 
+        background: #0d0d0d; 
+ 
+        border: 1px solid rgba(255,255,255,0.06); 
+ 
+        border-radius: 15px; 
+    } 
+ 
+    .step-number { 
+        position: absolute; 
+ 
+        top: 20px; 
+        right: 25px; 
+ 
+        color: rgba(0,0,255,0.18); 
+ 
+        font-size: 35px; 
+ 
+        font-weight: 800; 
+    } 
+ 
+    .step-icon { 
+        width: 48px; 
+        height: 48px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        margin-bottom: 20px; 
+ 
+        border-radius: 12px; 
+ 
+        color: #0000FF; 
+ 
+        background: rgba(0,0,255,0.09); 
+    } 
+ 
+    .step h3 { 
+        font-size: 16px; 
+ 
+        margin-bottom: 10px; 
+    } 
+ 
+    .step p { 
+        color: #707070; 
+ 
+        font-size: 12px; 
+ 
+        line-height: 1.8; 
+    } 
+ 
+ 
+    /* ================================================= 
+       DISCORD 
+    ================================================= */ 
+ 
+    .discord-section { 
+        width: 88%; 
+ 
+        max-width: 1300px; 
+ 
+        margin: auto; 
+ 
+        padding: 30px 0 110px; 
+    } 
+ 
+    .discord-card { 
+        position: relative; 
+ 
+        overflow: hidden; 
+ 
+        text-align: center; 
+ 
+        padding: 70px 30px; 
+ 
+        border-radius: 18px; 
+ 
+        border: 1px solid rgba(0,0,255,0.18); 
+ 
+        background: 
+            radial-gradient( 
+                circle at center, 
+                rgba(0,0,255,0.08), 
+                transparent 55% 
+            ), 
+            #0d0d0d; 
+    } 
+ 
+    .discord-icon { 
+        width: 60px; 
+        height: 60px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        margin: 0 auto 20px; 
+ 
+        border-radius: 16px; 
+ 
+        background: rgba(0,0,255,0.10); 
+ 
+        color: #0000FF; 
+ 
+        font-size: 25px; 
+    } 
+ 
+    .discord-card h2 { 
+        font-size: 30px; 
+ 
+        margin-bottom: 13px; 
+    } 
+ 
+    .discord-card p { 
+        max-width: 620px; 
+ 
+        margin: 0 auto 28px; 
+ 
+        color: #777; 
+ 
+        font-size: 13px; 
+ 
+        line-height: 1.8; 
+    } 
+ 
+ 
+    /* ================================================= 
+       FOOTER 
+    ================================================= */ 
+ 
+    footer { 
+        border-top: 1px solid rgba(255,255,255,0.06); 
+ 
+        padding: 65px 6% 30px; 
+ 
+        background: #060606; 
+    } 
+ 
+    .footer-inner { 
+        max-width: 1300px; 
+ 
+        margin: auto; 
+    } 
+ 
+    .footer-top { 
+        display: flex; 
+ 
+        justify-content: space-between; 
+ 
+        gap: 60px; 
+ 
+        padding-bottom: 50px; 
+    } 
+ 
+    .footer-brand { 
+        max-width: 390px; 
+    } 
+ 
+    .footer-description { 
+        margin-top: 18px; 
+ 
+        color: #666; 
+ 
+        font-size: 12px; 
+ 
+        line-height: 1.8; 
+    } 
+ 
+    .footer-links { 
+        display: flex; 
+ 
+        gap: 80px; 
+    } 
+ 
+    .footer-column { 
+        display: flex; 
+ 
+        flex-direction: column; 
+ 
+        gap: 10px; 
+    } 
+ 
+    .footer-column h4 { 
+        color: #ffffff; 
+ 
+        font-size: 10px; 
+ 
+        letter-spacing: 1.5px; 
+ 
+        margin-bottom: 7px; 
+    } 
+ 
+    .footer-column a { 
+        color: #666; 
+ 
+        font-size: 12px; 
+ 
+        transition: .2s; 
+    } 
+ 
+    .footer-column a:hover { 
+        color: #0000FF; 
+    } 
+ 
+    .footer-bottom { 
+        display: flex; 
+ 
+        justify-content: space-between; 
+ 
+        align-items: center; 
+ 
+        padding-top: 25px; 
+ 
+        border-top: 1px solid rgba(255,255,255,0.05); 
+ 
+        color: #555; 
+ 
+        font-size: 11px; 
+    } 
+ 
+    .footer-bottom strong { 
+        color: #aaa; 
+    } 
+ 
+    .footer-socials a { 
+        width: 36px; 
+        height: 36px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        border-radius: 9px; 
+ 
+        background: rgba(255,255,255,0.04); 
+ 
+        color: #777; 
+ 
+        transition: .2s; 
+    } 
+ 
+    .footer-socials a:hover { 
+        color: #0000FF; 
+ 
+        background: rgba(0,0,255,0.08); 
+    } 
+ 
+ 
+    /* ================================================= 
+       VAZIO 
+    ================================================= */ 
+ 
+    .empty-store { 
+        grid-column: 1 / -1; 
+ 
+        text-align: center; 
+ 
+        padding: 90px 20px; 
+ 
+        border: 1px solid rgba(255,255,255,0.06); 
+ 
+        border-radius: 16px; 
+ 
+        background: #0d0d0d; 
+    } 
+ 
+    .empty-store-icon { 
+        width: 65px; 
+        height: 65px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        margin: 0 auto 20px; 
+ 
+        border-radius: 15px; 
+ 
+        background: rgba(0,0,255,0.08); 
+ 
+        color: #0000FF; 
+ 
+        font-size: 25px; 
+    } 
+ 
+    .empty-store h3 { 
+        margin-bottom: 10px; 
+    } 
+ 
+    .empty-store p { 
+        color: #666; 
+ 
+        font-size: 13px; 
+    } 
+ 
+ 
+    /* ================================================= 
+       MENSAGEM SEM PRODUTOS DA CATEGORIA 
+    ================================================= */ 
+ 
+    .category-empty { 
+        display: none; 
+ 
+        grid-column: 1 / -1; 
+ 
+        text-align: center; 
+ 
+        padding: 70px 20px; 
+ 
+        border: 1px solid rgba(255,255,255,0.06); 
+ 
+        border-radius: 16px; 
+ 
+        background: #0d0d0d; 
+    } 
+ 
+    .category-empty.show { 
+        display: block; 
+    } 
+ 
+    .category-empty-icon { 
+        width: 60px; 
+        height: 60px; 
+ 
+        display: flex; 
+ 
+        align-items: center; 
+        justify-content: center; 
+ 
+        margin: 0 auto 18px; 
+ 
+        border-radius: 14px; 
+ 
+        background: rgba(0,0,255,0.08); 
+ 
+        color: #0000FF; 
+ 
+        font-size: 23px; 
+    } 
+ 
+    .category-empty h3 { 
+        margin-bottom: 8px; 
+    } 
+ 
+    .category-empty p { 
+        color: #666; 
+ 
+        font-size: 13px; 
+    } 
+ 
+ 
+    /* ================================================= 
+       RESPONSIVO 
+    ================================================= */ 
+ 
+    @media (max-width:1050px) { 
+ 
+        header { 
+            padding: 0 4%; 
+        } 
+ 
+        .main-nav { 
+            gap: 2px; 
+        } 
+ 
+        .main-nav a { 
+            padding: 9px 10px; 
+        } 
+ 
+    } 
+ 
+ 
+    @media (max-width:950px) { 
+ 
+        .main-nav a span { 
+            display: none; 
+        } 
+ 
+        .main-nav a { 
+            width: 40px; 
+ 
+            padding: 9px; 
+        } 
+ 
+        .products-grid, 
+        .benefits, 
+        .steps { 
+            grid-template-columns: 
+                repeat(2, minmax(0, 1fr)); 
+        } 
+ 
+        .footer-top { 
+            flex-direction: column; 
+        } 
+ 
+    } 
+ 
+ 
+    @media (max-width:850px) { 
+ 
+        .main-nav a.active::after { 
+            left: 10px; 
+ 
+            right: 10px; 
+        } 
+ 
+    } 
+ 
+ 
+    @media (max-width:650px) { 
+ 
+        header { 
+            height: 68px; 
+ 
+            padding: 0 20px; 
+        } 
+ 
+        .brand { 
+            font-size: 22px; 
+        } 
+ 
+        .main-nav { 
+            gap: 2px; 
+        } 
+ 
+        .main-nav a { 
+            width: 36px; 
+ 
+            min-height: 36px; 
+        } 
+ 
+        .nav-primary { 
+            width: 40px !important; 
+ 
+            padding: 9px !important; 
+        } 
+ 
+        .shop-hero { 
+            min-height: 600px; 
+ 
+            padding-top: 130px; 
+        } 
+ 
+        .shop-title { 
+            font-size: 45px; 
+ 
+            letter-spacing: -2px; 
+        } 
+ 
+        .products-grid, 
+        .benefits, 
+        .steps { 
+            grid-template-columns: 1fr; 
+        } 
+ 
+        .section { 
+            width: 90%; 
+ 
+            padding: 80px 0; 
+        } 
+ 
+        .discord-section { 
+            width: 90%; 
+ 
+            padding-bottom: 80px; 
+        } 
+ 
+        .footer-top { 
+            gap: 40px; 
+        } 
+ 
+        .footer-links { 
+            gap: 50px; 
+        } 
+ 
+        .footer-bottom { 
+            flex-direction: column; 
+ 
+            align-items: flex-start; 
+ 
+            gap: 20px; 
+        } 
+ 
+        .store-tabs { 
+            display: grid; 
+ 
+            grid-template-columns: 1fr; 
+ 
+            width: 100%; 
+        } 
+ 
+        .store-tab { 
+            width: 100%; 
+        } 
+ 
+    } 
+ 
+</style> 
+ 
+</head> 
+ 
+<body> 
+ 
+<!-- ===================================================== 
+     HEADER / NAVBAR 
+====================================================== --> 
+ 
+<header> 
+ 
+<!-- LOGO --> 
+ 
+<a 
+href="{{ url_for('inicio') }}" 
+class="brand" 
+aria-label="Cidade Eclipse - Início" 
+ 
+> 
+ 
+ 
+Cidade 
+ 
+<span> 
+    Eclipse 
+</span> 
+ 
+</a> 
+ 
+<!-- NAVEGAÇÃO --> 
+ 
+<nav 
+    class="main-nav" 
+    aria-label="Navegação principal" 
+> 
+ 
+ 
+<!-- INÍCIO --> 
+ 
+<a 
+    href="{{ url_for('inicio') }}" 
+    title="Início" 
+> 
+ 
+    <i class="fa-solid fa-house"></i> 
+ 
+    <span> 
+        Início 
+    </span> 
+ 
+</a> 
+ 
+ 
+<!-- CIDADE --> 
+ 
+<a 
+    href="{{ url_for('cidade') }}" 
+    title="Cidade" 
+> 
+ 
+    <i class="fa-solid fa-city"></i> 
+ 
+    <span> 
+        Cidade 
+    </span> 
+ 
+</a> 
+ 
+ 
+<!-- LOJA ATIVA --> 
+ 
+<a 
+    href="{{ url_for('loja') }}" 
+    class="active" 
+    aria-current="page" 
+    title="Loja" 
+> 
+ 
+    <i class="fa-solid fa-store"></i> 
+ 
+    <span> 
+        Loja 
+    </span> 
+ 
+</a> 
+ 
+ 
+<!-- DISCORD --> 
+ 
+<a 
+    href="{{ discord_url }}" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    title="Discord" 
+> 
+ 
+    <i class="fa-brands fa-discord"></i> 
+ 
+    <span> 
+        Discord 
+    </span> 
+ 
+</a> 
+ 
+ 
+<!-- ADMIN --> 
+ 
+{% if session.get('cargo') in ['Ceo', 'Fundador', 'Programador'] %} 
+ 
+<a 
+    href="{{ url_for('admin') }}" 
+    class="nav-admin" 
+    title="Painel Administrativo" 
+> 
+ 
+    <i class="fa-solid fa-user-shield"></i> 
+ 
+    <span> 
+        Admin 
+    </span> 
+ 
+</a> 
+ 
+{% endif %} 
+ 
+ 
+<!-- PAINEL / ENTRAR --> 
+ 
+{% if session.get('usuario_id') %} 
+ 
+<a 
+    href="{{ url_for('painel') }}" 
+    class="nav-primary" 
+    title="Painel" 
+> 
+ 
+    <i class="fa-solid fa-gauge-high"></i> 
+ 
+    <span> 
+        Painel 
+    </span> 
+ 
+</a> 
+ 
+{% else %} 
+ 
+<a 
+    href="{{ url_for('login') }}" 
+    class="nav-primary" 
+    title="Entrar" 
+> 
+ 
+    <i class="fa-solid fa-right-to-bracket"></i> 
+ 
+    <span> 
+        Entrar 
+    </span> 
+ 
+</a> 
+ 
+{% endif %} 
+ 
+ 
+</nav> 
+ 
+</header> 
+ 
+<!-- ===================================================== 
+     HERO 
+====================================================== --> 
+ 
+<section class="shop-hero"> 
+ 
+<div class="shop-hero-content"> 
+ 
+ 
+<div class="status-pill"> 
+ 
+    <span class="status-dot"></span> 
+ 
+    LOJA OFICIAL CIDADE ECLIPSE 
+ 
+</div> 
+ 
+ 
+<h1 class="shop-title"> 
+ 
+    <span class="white"> 
+        Adquira suas vantagens. 
+    </span> 
+ 
+    <span class="red"> 
+        Evolua dentro da cidade. 
+    </span> 
+ 
+</h1> 
+ 
+ 
+<p class="shop-description"> 
+ 
+    Encontre itens, vantagens e produtos exclusivos 
+    para complementar sua experiência dentro do 
+    Cidade Eclipse RPG. 
+ 
+</p> 
+ 
+ 
+<div class="hero-actions"> 
+ 
+    <a 
+        href="#produtos" 
+        class="button button-primary" 
+    > 
+ 
+        <i class="fa-solid fa-store"></i> 
+ 
+        VER PRODUTOS 
+ 
+    </a> 
+ 
+ 
+    <a 
+        href="{{ discord_url }}" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="button button-secondary" 
+    > 
+ 
+        <i class="fa-brands fa-discord"></i> 
+ 
+        ENTRAR NO DISCORD 
+ 
+    </a> 
+ 
+</div> 
+ 
+ 
+</div> 
+ 
+</section> 
+ 
+<div class="section-divider"></div> 
+ 
+<!-- ===================================================== 
+     PRODUTOS 
+====================================================== --> 
+ 
+<section 
+    class="section" 
+    id="produtos" 
+> 
+ 
+ 
+<div class="section-header"> 
+ 
+ 
+<span class="section-kicker"> 
+    LOJA OFICIAL 
+</span> 
+ 
+<h2 class="section-title"> 
+    Produtos Cidade Eclipse. 
+</h2> 
+ 
+<p class="section-description"> 
+ 
+    Escolha uma categoria e encontre os produtos 
+    disponíveis para aquisição. 
+ 
+</p> 
+ 
+ 
+</div> 
+ 
+<!-- ================================================= 
+     ABAS 
+================================================== --> 
+ 
+<div 
+    class="store-tabs" 
+    role="tablist" 
+    aria-label="Categorias da loja" 
+> 
+ 
+ 
+<!-- UTILITÁRIOS --> 
+ 
+<button 
+    type="button" 
+    class="store-tab active" 
+    data-category="utilitarios" 
+    role="tab" 
+    aria-selected="true" 
+> 
+ 
+ 
+    <i class="fa-solid fa-toolbox"></i> 
+ 
+    Utilitários 
+ 
+</button> 
+ 
+ 
+<!-- VEÍCULOS --> 
+ 
+<button 
+    type="button" 
+    class="store-tab" 
+    data-category="veiculos" 
+    role="tab" 
+    aria-selected="false" 
+> 
+ 
+ 
+    <i class="fa-solid fa-car"></i> 
+ 
+    Veículos 
+ 
+</button> 
+ 
+ 
+<!-- VEÍCULOS ESPECIAIS --> 
+ 
+<button 
+    type="button" 
+    class="store-tab" 
+    data-category="veiculos-especiais" 
+    role="tab" 
+    aria-selected="false" 
+> 
+ 
+ 
+    <i class="fa-solid fa-car-side"></i> 
+ 
+    Veículos Especiais 
+ 
+</button> 
+ 
+ 
+</div> 
+ 
+<div class="products-grid"> 
+ 
+    {% if produtos %} 
+ 
+        {% for produto in produtos %} 
+ 
+        <article 
+            class="product-card{% if produto.nome == 'Veículo Personalizado' %} custom-vehicle{% endif %}" 
+            data-category="{{ produto.categoria|default('utilitarios')|lower|replace(' ', '-') }}" 
+        > 
+ 
+            <div class="product-icon"> 
+                <i class="fa-solid {{ produto.icone }}"></i> 
+            </div> 
+ 
+            <div class="product-tag"> 
+                {% if produto.nome == 'Veículo Personalizado' %}
+                    ★ VEÍCULO RARÍSSIMO ★
+                {% else %}
+                    CIDADE ECLIPSE
+                {% endif %}
+            </div> 
+ 
+            <h3> 
+                {{ produto.nome }} 
+            </h3> 
+ 
+            <p> 
+                {{ produto.descricao }} 
+            </p> 
+ 
+            <div class="product-separator"></div> 
+ 
+            <div class="price-label"> 
+                Preço 
+            </div> 
+ 
+            <div class="price"> 
+                <span>R$</span> 
+                {{ produto.preco }} 
+            </div> 
+ 
+            <a 
+                href="{{ url_for('comprar', produto_id=loop.index0) }}" 
+                class="buy" 
+            > 
+                <i class="fa-solid fa-cart-shopping"></i> 
+                {% if produto.nome == 'Veículo Personalizado' %}
+                    PERSONALIZAR AGORA
+                {% else %}
+                    COMPRAR
+                {% endif %}
+            </a> 
+ 
+        </article> 
+ 
+        {% endfor %} 
+ 
+ 
+        <div 
+            class="category-empty" 
+            id="categoryEmpty" 
+        > 
+ 
+            <div class="category-empty-icon"> 
+                <i class="fa-solid fa-box-open"></i> 
+            </div> 
+ 
+            <h3> 
+                Nenhum produto nesta categoria 
+            </h3> 
+ 
+            <p> 
+                Ainda não existem produtos disponíveis nesta categoria. 
+            </p> 
+ 
+        </div> 
+ 
+ 
+    {% else %} 
+ 
+ 
+        <div class="empty-store"> 
+ 
+            <div class="empty-store-icon"> 
+                <i class="fa-solid fa-box-open"></i> 
+            </div> 
+ 
+            <h3> 
+                Nenhum produto disponível 
+            </h3> 
+ 
+            <p> 
+                Nossa loja está sendo atualizada. 
+                Volte novamente em breve. 
+            </p> 
+ 
+        </div> 
+ 
+ 
+    {% endif %} 
+ 
+ 
+</div> 
+ 
+</section> 
+ 
+<div class="section-divider"></div> 
+ 
+<!-- ===================================================== 
+     BENEFÍCIOS 
+====================================================== --> 
+ 
+<section class="section"> 
+ 
+<div class="section-header"> 
+ 
+ 
+<span class="section-kicker"> 
+    CIDADE ECLIPSE 
+</span> 
+ 
+ 
+<h2 class="section-title"> 
+    Por que comprar? 
+</h2> 
+ 
+ 
+<p class="section-description"> 
+ 
+    Tudo pensado para melhorar sua experiência 
+    dentro da cidade. 
+ 
+</p> 
+ 
+ 
+</div> 
+ 
+<div class="benefits"> 
+ 
+ 
+<div class="benefit"> 
+ 
+    <div class="benefit-icon"> 
+ 
+        <i class="fa-solid fa-gem"></i> 
+ 
+    </div> 
+ 
+ 
+    <h3> 
+        Itens exclusivos 
+    </h3> 
+ 
+ 
+    <p> 
+ 
+        Tenha acesso a produtos e vantagens 
+        especiais disponibilizados pela equipe 
+        Cidade Eclipse. 
+ 
+    </p> 
+ 
+</div> 
+ 
+ 
+ 
+<div class="benefit"> 
+ 
+    <div class="benefit-icon"> 
+ 
+        <i class="fa-solid fa-bolt"></i> 
+ 
+    </div> 
+ 
+ 
+    <h3> 
+        Atendimento rápido 
+    </h3> 
+ 
+ 
+    <p> 
+ 
+        Escolha seu produto e siga diretamente 
+        para o processo de compra. 
+ 
+    </p> 
+ 
+</div> 
+ 
+ 
+ 
+<div class="benefit"> 
+ 
+    <div class="benefit-icon"> 
+ 
+        <i class="fa-solid fa-shield-halved"></i> 
+ 
+    </div> 
+ 
+ 
+    <h3> 
+        Compra segura 
+    </h3> 
+ 
+ 
+    <p> 
+ 
+        Realize sua negociação através dos 
+        canais oficiais disponibilizados pelo 
+        servidor. 
+ 
+    </p> 
+ 
+</div> 
+ 
+ 
+</div> 
+ 
+</section> 
+ 
+<div class="section-divider"></div> 
+ 
+<!-- ===================================================== 
+     COMO COMPRAR 
+====================================================== --> 
+ 
+<section class="section"> 
+ 
+<div class="section-header"> 
+ 
+ 
+<span class="section-kicker"> 
+    PROCESSO 
+</span> 
+ 
+ 
+<h2 class="section-title"> 
+    Como comprar? 
+</h2> 
+ 
+ 
+<p class="section-description"> 
+    O processo é simples e rápido. 
+</p> 
+ 
+ 
+</div> 
+ 
+<div class="steps"> 
+ 
+ 
+<div class="step"> 
+ 
+    <span class="step-number"> 
+        01 
+    </span> 
+ 
+ 
+    <div class="step-icon"> 
+ 
+        <i class="fa-solid fa-store"></i> 
+ 
+    </div> 
+ 
+ 
+    <h3> 
+        Escolha seu produto 
+    </h3> 
+ 
+ 
+    <p> 
+ 
+        Navegue pelas categorias disponíveis 
+        e escolha a vantagem que deseja 
+        adquirir. 
+ 
+    </p> 
+ 
+</div> 
+ 
+ 
+ 
+<div class="step"> 
+ 
+    <span class="step-number"> 
+        02 
+    </span> 
+ 
+ 
+    <div class="step-icon"> 
+ 
+        <i class="fa-solid fa-cart-shopping"></i> 
+ 
+    </div> 
+ 
+ 
+    <h3> 
+        Clique em comprar 
+    </h3> 
+ 
+ 
+    <p> 
+ 
+        Clique no botão comprar para abrir 
+        a página específica do produto. 
+ 
+    </p> 
+ 
+</div> 
+ 
+ 
+ 
+<div class="step"> 
+ 
+    <span class="step-number"> 
+        03 
+    </span> 
+ 
+ 
+    <div class="step-icon"> 
+ 
+        <i class="fa-solid fa-check"></i> 
+ 
+    </div> 
+ 
+ 
+    <h3> 
+        Finalize sua compra 
+    </h3> 
+ 
+ 
+    <p> 
+ 
+        Siga as orientações da página de compra 
+        para finalizar sua aquisição. 
+ 
+    </p> 
+ 
+</div> 
+ 
+ 
+</div> 
+ 
+</section> 
+ 
+<!-- ===================================================== 
+     DISCORD 
+====================================================== --> 
+ 
+<section class="discord-section"> 
+ 
+<div class="discord-card"> 
+ 
+ 
+<div class="discord-icon"> 
+ 
+    <i class="fa-brands fa-discord"></i> 
+ 
+</div> 
+ 
+ 
+<h2> 
+    Faça parte da comunidade. 
+</h2> 
+ 
+ 
+<p> 
+ 
+    Entre no Discord oficial do Cidade Eclipse, 
+    acompanhe novidades, participe da comunidade 
+    e fique por dentro de tudo que acontece na cidade. 
+ 
+</p> 
+ 
+ 
+<a 
+    href="{{ discord_url }}" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="button button-primary" 
+> 
+ 
+    <i class="fa-brands fa-discord"></i> 
+ 
+    ENTRAR NO DISCORD 
+ 
+</a> 
+ 
+ 
+</div> 
+ 
+</section> 
+ 
+<!-- ===================================================== 
+     FOOTER 
+====================================================== --> 
+ 
+<footer> 
+ 
+<div class="footer-inner"> 
+ 
+ 
+<div class="footer-top"> 
+ 
+ 
+    <div class="footer-brand"> 
+ 
+ 
+        <a 
+            href="{{ url_for('inicio') }}" 
+            class="brand" 
+        > 
+ 
+            Cidade 
+ 
+            <span> 
+                Eclipse 
+            </span> 
+ 
+        </a> 
+ 
+ 
+        <p class="footer-description"> 
+ 
+            Uma nova experiência de SA:MP RPG. 
+            Entre para Cidade Eclipse e construa 
+            sua própria história. 
+ 
+        </p> 
+ 
+ 
+    </div> 
+ 
+ 
+ 
+    <div class="footer-links"> 
+ 
+ 
+        <div class="footer-column"> 
+ 
+ 
+            <h4> 
+                NAVEGAÇÃO 
+            </h4> 
+ 
+ 
+            <a 
+                href="{{ url_for('inicio') }}" 
+            > 
+                Início 
+            </a> 
+ 
+ 
+            <a 
+                href="{{ url_for('cidade') }}" 
+            > 
+                Cidade 
+            </a> 
+ 
+ 
+            <a 
+                href="{{ url_for('loja') }}" 
+            > 
+                Loja 
+            </a> 
+ 
+ 
+        </div> 
+ 
+ 
+ 
+        <div class="footer-column"> 
+ 
+ 
+            <h4> 
+                COMUNIDADE 
+            </h4> 
+ 
+ 
+            <a 
+                href="{{ discord_url }}" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+            > 
+                Discord 
+            </a> 
+ 
+ 
+            {% if session.get('usuario_id') %} 
+ 
+ 
+            <a 
+                href="{{ url_for('painel') }}" 
+            > 
+                Painel 
+            </a> 
+ 
+ 
+            {% else %} 
+ 
+ 
+            <a 
+                href="{{ url_for('login') }}" 
+            > 
+                Entrar 
+            </a> 
+ 
+ 
+            {% endif %} 
+ 
+ 
+        </div> 
+ 
+ 
+    </div> 
+ 
+ 
+</div> 
+ 
+ 
+ 
+<div class="footer-bottom"> 
+ 
+ 
+    <div> 
+ 
+        © 2026 
+ 
+        <strong> 
+            Cidade Eclipse RPG 
+        </strong> 
+ 
+        — Todos os direitos reservados. 
+ 
+    </div> 
+ 
+ 
+    <div class="footer-socials"> 
+ 
+ 
+        <a 
+            href="{{ discord_url }}" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            title="Discord" 
+        > 
+ 
+            <i class="fa-brands fa-discord"></i> 
+ 
+        </a> 
+ 
+ 
+    </div> 
+ 
+ 
+</div> 
+ 
+ 
+</div> 
+ 
+</footer> 
+ 
+<!-- ===================================================== 
+     FILTRO DAS CATEGORIAS 
+====================================================== --> 
+ 
+<script> 
+ 
+    document.addEventListener("DOMContentLoaded", function () { 
+ 
+        const tabs = 
+            document.querySelectorAll(".store-tab"); 
+ 
+        const products = 
+            document.querySelectorAll(".product-card"); 
+ 
+        const emptyMessage = 
+            document.getElementById("categoryEmpty"); 
+ 
+ 
+        tabs.forEach(function (tab) { 
+ 
+            tab.addEventListener("click", function () { 
+ 
+                const selectedCategory = 
+                    this.dataset.category; 
+ 
+ 
+                /* ATIVA A ABA */ 
+ 
+                tabs.forEach(function (item) { 
+ 
+                    item.classList.remove("active"); 
+ 
+                    item.setAttribute( 
+                        "aria-selected", 
+                        "false" 
+                    ); 
+ 
+                }); 
+ 
+ 
+                this.classList.add("active"); 
+ 
+                this.setAttribute( 
+                    "aria-selected", 
+                    "true" 
+                ); 
+ 
+ 
+                /* FILTRA OS PRODUTOS */ 
+ 
+                let visibleProducts = 0; 
+ 
+ 
+                products.forEach(function (product) { 
+ 
+                    const productCategory = 
+                        product.dataset.category; 
+ 
+ 
+                    if ( 
+                        productCategory === 
+                        selectedCategory 
+                    ) { 
+ 
+                        product.classList.remove("hidden"); 
+ 
+                        visibleProducts++; 
+ 
+                    } else { 
+ 
+                        product.classList.add("hidden"); 
+ 
+                    } 
+ 
+                }); 
+ 
+ 
+                /* MOSTRA AVISO SE NÃO HOUVER PRODUTOS */ 
+ 
+                if (emptyMessage) { 
+ 
+                    if (visibleProducts === 0) { 
+ 
+                        emptyMessage.classList.add("show"); 
+ 
+                    } else { 
+ 
+                        emptyMessage.classList.remove("show"); 
+ 
+                    } 
+ 
+                } 
+ 
+            }); 
+ 
+        }); 
+ 
+ 
+        /* 
+         * ================================================= 
+         * GARANTE QUE A LOJA COMECE NA CATEGORIA 
+         * UTILITÁRIOS 
+         * ================================================= 
+         */ 
+ 
+        const firstTab = 
+            document.querySelector(".store-tab.active"); 
+ 
+ 
+        if (firstTab) { 
+ 
+            const firstCategory = 
+                firstTab.dataset.category; 
+ 
+ 
+            let firstVisibleProducts = 0; 
+ 
+ 
+            products.forEach(function (product) { 
+ 
+                if ( 
+                    product.dataset.category === 
+                    firstCategory 
+                ) { 
+ 
+                    product.classList.remove("hidden"); 
+ 
+                    firstVisibleProducts++; 
+ 
+                } else { 
+ 
+                    product.classList.add("hidden"); 
+ 
+                } 
+ 
+            }); 
+ 
+ 
+            if (emptyMessage) { 
+ 
+                if (firstVisibleProducts === 0) { 
+ 
+                    emptyMessage.classList.add("show"); 
+ 
+                } else { 
+ 
+                    emptyMessage.classList.remove("show"); 
+ 
+                } 
+ 
+            } 
+ 
+        } 
+ 
+    }); 
+ 
+</script> 
+ 
+</body> 
+ 
+</html>
+

@@ -1,0 +1,1221 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cidade Eclipse • Login</title>
+
+<link
+    rel="icon"
+    type="image/png"
+    href="{{ url_for('static', filename='img/favicon.png') }}"
+>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:#070707;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* =========================================================
+   FUNDO
+========================================================= */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    left:-250px;
+    top:-250px;
+
+    background:rgba(0,0,255,.12);
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    pointer-events:none;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:450px;
+    height:450px;
+
+    right:-220px;
+    bottom:-220px;
+
+    background:rgba(0,0,255,.08);
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    pointer-events:none;
+
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:76px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 8%;
+
+    background:rgba(12,12,12,.94);
+
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #0000FF;
+
+    z-index:999;
+
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo{
+
+    color:#fff;
+
+    font-size:30px;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+
+    text-decoration:none;
+
+}
+
+.logo span{
+
+    color:#0000FF;
+
+    text-shadow:0 0 15px rgba(0,0,255,.35);
+
+}
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+nav a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 16px;
+
+    color:#aaa;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    border-radius:7px;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#fff;
+
+    background:#181818;
+
+}
+
+nav a i{
+
+    color:#0000FF;
+
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:130px 20px 70px;
+
+}
+
+/* =========================================================
+   CARD DE LOGIN
+========================================================= */
+
+.login-card{
+
+    width:100%;
+
+    max-width:950px;
+
+    min-height:540px;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    background:#101010;
+
+    border:1px solid #292929;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.65),
+        0 0 50px rgba(0,0,255,.04);
+
+    animation:entrada .7s ease;
+
+}
+
+/* =========================================================
+   LADO ESQUERDO
+========================================================= */
+
+.login-info{
+
+    position:relative;
+
+    padding:55px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0000FF,
+            #0000FF 55%,
+            #0d0d0d
+        );
+
+    border-right:1px solid #292929;
+
+    overflow:hidden;
+
+}
+
+.login-info::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+    height:320px;
+
+    right:-170px;
+    top:-170px;
+
+    border-radius:50%;
+
+    background:rgba(0,0,255,.14);
+
+    filter:blur(50px);
+
+}
+
+.login-info-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    width:max-content;
+
+    padding:8px 13px;
+
+    border-radius:30px;
+
+    background:#0000FF;
+
+    border:1px solid #0000FF;
+
+    color:#0000FF;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:1.5px;
+
+    margin-bottom:25px;
+
+}
+
+.badge i{
+
+    font-size:11px;
+
+}
+
+.login-info h1{
+
+    font-size:42px;
+
+    line-height:1.1;
+
+    font-weight:800;
+
+    margin-bottom:18px;
+
+}
+
+.login-info h1 span{
+
+    color:#0000FF;
+
+    text-shadow:0 0 20px rgba(0,0,255,.3);
+
+}
+
+.description{
+
+    max-width:420px;
+
+    color:#999;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+/* =========================================================
+   BENEFÍCIOS
+========================================================= */
+
+.benefits{
+
+    margin-top:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.benefit{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    color:#aaa;
+
+    font-size:12px;
+
+}
+
+.benefit-icon{
+
+    width:38px;
+    height:38px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:#1b0808;
+
+    border:1px solid #0000FF;
+
+    color:#0000FF;
+
+}
+
+.benefit strong{
+
+    color:#fff;
+
+}
+
+/* =========================================================
+   LADO DIREITO
+========================================================= */
+
+.login-form{
+
+    padding:50px 45px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    background:#101010;
+
+}
+
+.form-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:30px;
+
+}
+
+.form-icon{
+
+    width:45px;
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#0000FF;
+
+    border:1px solid #0000FF;
+
+    border-radius:9px;
+
+    color:#0000FF;
+
+    font-size:18px;
+
+}
+
+.form-header h2{
+
+    font-size:21px;
+
+    margin-bottom:2px;
+
+}
+
+.form-header p{
+
+    color:#666;
+
+    font-size:11px;
+
+}
+
+/* =========================================================
+   MENSAGENS
+========================================================= */
+
+.alert{
+
+    padding:13px 15px;
+
+    margin-bottom:18px;
+
+    border-radius:8px;
+
+    font-size:11px;
+
+    border:1px solid;
+
+}
+
+.alert.erro{
+
+    background:#1b0808;
+
+    border-color:#0000FF;
+
+    color:#0000FF;
+
+}
+
+.alert.sucesso{
+
+    background:#07180d;
+
+    border-color:#124c27;
+
+    color:#55dc82;
+
+}
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+.form-group{
+
+    margin-bottom:18px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.input-box{
+
+    position:relative;
+
+}
+
+.input-box i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#666;
+
+    font-size:13px;
+
+    transition:.3s;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    padding:14px 15px 14px 43px;
+
+    background:#0b0b0b;
+
+    border:1px solid #282828;
+
+    border-radius:9px;
+
+    outline:none;
+
+    color:#fff;
+
+    font-size:12px;
+
+    transition:.3s;
+
+}
+
+.input-box input::placeholder{
+
+    color:#555;
+
+}
+
+.input-box input:focus{
+
+    border-color:#0000FF;
+
+    box-shadow:0 0 0 3px rgba(0,0,255,.06);
+
+}
+
+.input-box:focus-within i{
+
+    color:#0000FF;
+
+}
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+.btn{
+
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    padding:15px;
+
+    margin-top:5px;
+
+    border-radius:9px;
+
+    background:#0000FF;
+
+    border:1px solid #0000FF;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:.3px;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+    box-shadow:0 10px 30px rgba(0,0,255,.12);
+
+}
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(255,255,255,.22);
+
+    transform:skewX(-20deg);
+
+    transition:.5s;
+
+}
+
+.btn:hover::before{
+
+    left:120%;
+
+}
+
+.btn:hover{
+
+    background:#0000FF;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 35px rgba(0,0,255,.22);
+
+}
+
+.btn i{
+
+    font-size:14px;
+
+}
+
+/* =========================================================
+   CADASTRO
+========================================================= */
+
+.register{
+
+    text-align:center;
+
+    margin-top:22px;
+
+    color:#666;
+
+    font-size:11px;
+
+}
+
+.register a{
+
+    color:#0000FF;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.register a:hover{
+
+    color:#fff;
+
+}
+
+/* =========================================================
+   SEGURANÇA
+========================================================= */
+
+.security{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:1px solid #222;
+
+    color:#555;
+
+    font-size:10px;
+
+}
+
+.security i{
+
+    color:#20d35a;
+
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+    text-align:center;
+
+    padding:25px;
+
+    background:#050505;
+
+    border-top:1px solid #210000;
+
+    color:#555;
+
+    font-size:10px;
+
+}
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+@keyframes entrada{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media(max-width:850px){
+
+    header{
+
+        padding:0 20px;
+
+    }
+
+    nav a span{
+
+        display:none;
+
+    }
+
+    nav a{
+
+        padding:10px;
+
+    }
+
+    .login-card{
+
+        grid-template-columns:1fr;
+
+        max-width:600px;
+
+    }
+
+    .login-info{
+
+        border-right:none;
+
+        border-bottom:1px solid #292929;
+
+        padding:40px 30px;
+
+    }
+
+    .login-form{
+
+        padding:40px 30px;
+
+    }
+
+    .login-info h1{
+
+        font-size:34px;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    header{
+
+        height:68px;
+
+    }
+
+    .logo{
+
+        font-size:25px;
+
+    }
+
+    .container{
+
+        padding:100px 12px 40px;
+
+    }
+
+    .login-info,
+    .login-form{
+
+        padding:30px 22px;
+
+    }
+
+    .login-info h1{
+
+        font-size:29px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+<a href="{{ url_for('inicio') }}" class="logo">
+    Cidade <span>Eclipse</span>
+</a>
+
+<nav>
+
+<a href="{{ url_for('inicio') }}">
+    <i class="fa-solid fa-house"></i>
+    <span>Início</span>
+</a>
+
+<a href="{{ url_for('cidade') }}">
+    <i class="fa-solid fa-city"></i>
+    <span>Cidade</span>
+</a>
+
+<a href="{{ url_for('loja') }}">
+    <i class="fa-solid fa-store"></i>
+    <span>Loja</span>
+</a>
+
+<a href="{{ discord_url }}"
+   target="_blank"
+   rel="noopener noreferrer">
+
+    <i class="fa-brands fa-discord"></i>
+    <span>Discord</span>
+
+</a>
+
+</nav>
+
+</header>
+
+<!-- =========================================================
+     CONTEÚDO
+========================================================= -->
+
+<main class="container">
+
+<div class="login-card">
+
+<!-- =========================================================
+     ESQUERDA
+========================================================= -->
+
+<section class="login-info">
+
+<div class="login-info-content">
+
+<div class="badge">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+ÁREA OFICIAL
+
+</div>
+
+<h1>
+
+Bem-vindo ao Cidade Eclipse
+
+</h1>
+
+<p class="description">
+
+Entre na sua conta para acessar o painel,
+acompanhar sua conta e aproveitar todos os
+recursos disponíveis no Cidade Eclipse RPG.
+
+</p>
+
+<div class="benefits">
+
+<div class="benefit">
+
+<div class="benefit-icon">
+
+<i class="fa-solid fa-gamepad"></i>
+
+</div>
+
+<div>
+
+<strong>Experiência RPG</strong><br>
+
+Entre para a cidade e viva sua história.
+
+</div>
+
+</div>
+
+<div class="benefit">
+
+<div class="benefit-icon">
+
+<i class="fa-solid fa-user-shield"></i>
+
+</div>
+
+<div>
+
+<strong>Conta protegida</strong><br>
+
+Sua senha é armazenada de forma segura.
+
+</div>
+
+</div>
+
+<div class="benefit">
+
+<div class="benefit-icon">
+
+<i class="fa-solid fa-bolt"></i>
+
+</div>
+
+<div>
+
+<strong>Acesso rápido</strong><br>
+
+Entre no painel em poucos segundos.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     DIREITA
+========================================================= -->
+
+<section class="login-form">
+
+<div class="form-header">
+
+<div class="form-icon">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+</div>
+
+<div>
+
+<h2>Entrar na conta</h2>
+
+<p>Acesse sua conta Cidade Eclipse</p>
+
+</div>
+
+</div>
+
+<!-- MENSAGENS DO FLASK -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+{% for categoria, mensagem in messages %}
+
+<div class="alert {{ categoria }}">
+
+{{ mensagem }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endwith %}
+
+<!-- FORMULÁRIO -->
+
+<form method="POST"
+      action="{{ url_for('login') }}">
+
+<div class="form-group">
+
+<label for="usuario">
+    USUÁRIO
+</label>
+
+<div class="input-box">
+
+<i class="fa-solid fa-user"></i>
+
+<input
+    type="text"
+    id="usuario"
+    name="usuario"
+    placeholder="Digite seu usuário"
+    autocomplete="username"
+    requi#0000FF
+>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label for="senha">
+    SENHA
+</label>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+    type="password"
+    id="senha"
+    name="senha"
+    placeholder="Digite sua senha"
+    autocomplete="current-password"
+    requi#0000FF
+>
+
+</div>
+
+</div>
+
+<button
+    type="submit"
+    class="btn">
+
+<i class="fa-solid fa-arrow-right-to-bracket"></i>
+
+ENTRAR
+
+</button>
+
+</form>
+
+<div class="register">
+
+Ainda não possui uma conta?
+
+<a href="{{ url_for('cadastro') }}">
+    Criar minha conta
+</a>
+
+</div>
+
+<div class="security">
+
+<i class="fa-solid fa-circle-check"></i>
+
+Sistema oficial Cidade Eclipse
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+Cidade Eclipse RPG
+
+<br><br>
+
+© 2026 Cidade Eclipse RPG — Todos os direitos reservados.
+
+</footer>
+
+</body>
+
+</html>
+```

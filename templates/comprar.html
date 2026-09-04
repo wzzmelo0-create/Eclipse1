@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Cidade Eclipse RPG — compra oficial de itens e vantagens."
+>
+
+<meta
+    name="theme-color"
+    content="#080808"
+>
+
+<meta
+    name="author"
+    content="Cidade Eclipse RPG"
+>
+
+<meta
+    name="robots"
+    content="index, follow"
+>
+
+<title>
+    Comprar — Cidade Eclipse RPG
+</title>
+
+
+<!-- FAVICON -->
+
+<link
+    rel="icon"
+    type="image/png"
+    href="{{ url_for('static', filename='img/favicon.png') }}"
+>
+
+
+<!-- GOOGLE FONT -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- FONT AWESOME -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+
+<style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        font-family: "Poppins", sans-serif;
+
+        background: #080808;
+
+        color: #ffffff;
+
+        min-height: 100vh;
+
+        overflow-x: hidden;
+
+    }
+
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    header {
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        height: 82px;
+
+        background: rgba(8, 8, 8, 0.92);
+
+        backdrop-filter: blur(18px);
+
+        -webkit-backdrop-filter: blur(18px);
+
+        border-bottom: 1px solid rgba(0, 0, 255, 0.18);
+
+        z-index: 999;
+
+    }
+
+
+    .header-inner {
+
+        width: min(1200px, calc(100% - 40px));
+
+        height: 100%;
+
+        margin: auto;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 30px;
+
+    }
+
+
+    /* =====================================================
+       BRAND
+    ===================================================== */
+
+    .brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        flex-shrink: 0;
+
+    }
+
+
+    .brand-icon {
+
+        width: 44px;
+
+        height: 44px;
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: #111111;
+
+        border: 1px solid rgba(0, 0, 255, 0.35);
+
+        color: #0000FF;
+
+        font-size: 18px;
+
+        box-shadow:
+            0 0 25px rgba(0, 0, 255, 0.08);
+
+    }
+
+
+    .brand-text {
+
+        font-size: 20px;
+
+        font-weight: 800;
+
+        letter-spacing: -0.5px;
+
+        line-height: 1;
+
+    }
+
+
+    .brand-text span {
+        color: #0000FF;
+    }
+
+
+    .brand-subtitle {
+
+        display: block;
+
+        margin-top: 5px;
+
+        font-size: 8px;
+
+        font-weight: 600;
+
+        letter-spacing: 2px;
+
+        color: #777777;
+
+    }
+
+
+    /* =====================================================
+       NAV
+    ===================================================== */
+
+    .main-nav {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+    }
+
+
+    .main-nav a {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        padding: 10px 13px;
+
+        border-radius: 9px;
+
+        color: #888888;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        transition: 0.25s ease;
+
+    }
+
+
+    .main-nav a i {
+
+        font-size: 13px;
+
+    }
+
+
+    .main-nav a:hover {
+
+        color: #ffffff;
+
+        background: #111111;
+
+    }
+
+
+    .main-nav a.active {
+
+        color: #ffffff;
+
+        background: #151515;
+
+        box-shadow:
+            inset 0 0 0 1px rgba(0, 0, 255, 0.18);
+
+    }
+
+
+    .main-nav a.active i {
+
+        color: #0000FF;
+
+    }
+
+
+    .main-nav .nav-primary {
+
+        background: #0000FF;
+
+        color: #ffffff;
+
+        margin-left: 5px;
+
+    }
+
+
+    .main-nav .nav-primary:hover {
+
+        background: #0000FF;
+
+        color: #ffffff;
+
+    }
+
+
+    .main-nav .nav-admin {
+
+        color: #0000FF;
+
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .purchase-hero {
+
+        position: relative;
+
+        min-height: 480px;
+
+        padding-top: 82px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        overflow: hidden;
+
+        border-bottom: 1px solid #151515;
+
+    }
+
+
+    .purchase-hero::before {
+
+        content: "";
+
+        position: absolute;
+
+        width: 700px;
+
+        height: 700px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(0, 0, 255, 0.13) 0%,
+                rgba(0, 0, 255, 0.04) 35%,
+                transparent 70%
+            );
+
+        top: -300px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        pointer-events: none;
+
+    }
+
+
+    .purchase-hero::after {
+
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(255,255,255,0.025) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(255,255,255,0.025) 1px,
+                transparent 1px
+            );
+
+        background-size: 50px 50px;
+
+        mask-image:
+            linear-gradient(
+                to bottom,
+                black,
+                transparent
+            );
+
+        pointer-events: none;
+
+    }
+
+
+    .hero-content {
+
+        position: relative;
+
+        z-index: 2;
+
+        width: min(1000px, calc(100% - 40px));
+
+        text-align: center;
+
+        padding: 70px 20px;
+
+    }
+
+
+    .status-pill {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        padding: 8px 14px;
+
+        border: 1px solid rgba(0, 0, 255, 0.25);
+
+        border-radius: 999px;
+
+        background: rgba(0, 0, 255, 0.04);
+
+        color: #bbbbbb;
+
+        font-size: 10px;
+
+        font-weight: 700;
+
+        letter-spacing: 1.5px;
+
+    }
+
+
+    .status-dot {
+
+        width: 7px;
+
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: #0000FF;
+
+        box-shadow:
+            0 0 12px rgba(0, 0, 255, 0.8);
+
+    }
+
+
+    .hero-title {
+
+        margin-top: 25px;
+
+        font-size: clamp(40px, 6vw, 72px);
+
+        line-height: 1.05;
+
+        letter-spacing: -3px;
+
+        font-weight: 800;
+
+    }
+
+
+    .hero-title .white {
+
+        display: block;
+
+        color: #ffffff;
+
+    }
+
+
+    .hero-title .red {
+
+        display: block;
+
+        color: #0000FF;
+
+    }
+
+
+    .hero-description {
+
+        max-width: 680px;
+
+        margin: 24px auto 0;
+
+        color: #888888;
+
+        font-size: 14px;
+
+        line-height: 1.9;
+
+    }
+
+
+    /* =====================================================
+       SECTION
+    ===================================================== */
+
+    .section {
+
+        width: min(1100px, calc(100% - 40px));
+
+        margin: auto;
+
+        padding: 90px 0;
+
+    }
+
+
+    .section-header {
+
+        text-align: center;
+
+        margin-bottom: 45px;
+
+    }
+
+
+    .section-kicker {
+
+        display: block;
+
+        color: #0000FF;
+
+        font-size: 10px;
+
+        font-weight: 800;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .section-title {
+
+        font-size: clamp(27px, 4vw, 42px);
+
+        letter-spacing: -1.5px;
+
+        font-weight: 800;
+
+    }
+
+
+    .section-description {
+
+        max-width: 600px;
+
+        margin: 14px auto 0;
+
+        color: #777777;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+    }
+
+
+    /* =====================================================
+       PURCHASE CARD
+    ===================================================== */
+
+    .purchase-wrapper {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1.25fr;
+
+        gap: 25px;
+
+        max-width: 900px;
+
+        margin: auto;
+
+    }
+
+
+    .product-card {
+
+        position: relative;
+
+        background: #0e0e0e;
+
+        border: 1px solid #202020;
+
+        border-radius: 18px;
+
+        padding: 35px;
+
+        overflow: hidden;
+
+        transition: 0.3s ease;
+
+    }
+
+
+    .product-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+
+        height: 180px;
+
+        border-radius: 50%;
+
+        background: rgba(0, 0, 255, 0.07);
+
+        filter: blur(40px);
+
+        top: -80px;
+
+        right: -80px;
+
+    }
+
+
+    .product-card:hover {
+
+        border-color: rgba(0, 0, 255, 0.3);
+
+        transform: translateY(-3px);
+
+    }
+
+
+    .product-icon {
+
+        position: relative;
+
+        width: 65px;
+
+        height: 65px;
+
+        border-radius: 15px;
+
+        background: #151515;
+
+        border: 1px solid rgba(0, 0, 255, 0.2);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #0000FF;
+
+        font-size: 25px;
+
+        margin-bottom: 22px;
+
+    }
+
+
+    .product-tag {
+
+        display: inline-block;
+
+        padding: 5px 9px;
+
+        border-radius: 5px;
+
+        background: rgba(0, 0, 255, 0.08);
+
+        color: #0000FF;
+
+        font-size: 8px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.5px;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .product-card h3 {
+
+        font-size: 25px;
+
+        font-weight: 800;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .product-description {
+
+        color: #777777;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .product-separator {
+
+        height: 1px;
+
+        background: #202020;
+
+        margin: 25px 0;
+
+    }
+
+
+    .price-label {
+
+        color: #666666;
+
+        font-size: 10px;
+
+        font-weight: 700;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1.5px;
+
+    }
+
+
+    .price {
+
+        margin-top: 3px;
+
+        font-size: 34px;
+
+        font-weight: 800;
+
+        color: #ffffff;
+
+    }
+
+
+    .price span {
+
+        color: #0000FF;
+
+        font-size: 16px;
+
+        margin-right: 4px;
+
+    }
+
+
+    /* =====================================================
+       CHECKOUT
+    ===================================================== */
+
+    .checkout-card {
+
+        background: #0d0d0d;
+
+        border: 1px solid #202020;
+
+        border-radius: 18px;
+
+        padding: 35px;
+
+    }
+
+
+    .checkout-title {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        font-size: 19px;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .checkout-title i {
+
+        color: #0000FF;
+
+    }
+
+
+    .checkout-subtitle {
+
+        color: #666666;
+
+        font-size: 12px;
+
+        line-height: 1.7;
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .checkout-info {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .checkout-item {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        padding: 13px;
+
+        background: #111111;
+
+        border: 1px solid #1d1d1d;
+
+        border-radius: 10px;
+
+        color: #888888;
+
+        font-size: 11px;
+
+    }
+
+
+    .checkout-item i {
+
+        width: 25px;
+
+        color: #0000FF;
+
+        text-align: center;
+
+    }
+
+
+    .whatsapp-button {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        padding: 15px 20px;
+
+        border-radius: 10px;
+
+        background: #0000FF;
+
+        color: #ffffff;
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        letter-spacing: 0.5px;
+
+        transition: 0.25s ease;
+
+        border: none;
+
+        cursor: pointer;
+
+    }
+
+
+    .whatsapp-button:hover {
+
+        background: #0000FF;
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 10px 30px rgba(0, 0, 255, 0.18);
+
+    }
+
+
+    .back-button {
+
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 9px;
+
+        margin-top: 10px;
+
+        padding: 13px 20px;
+
+        border-radius: 10px;
+
+        background: #151515;
+
+        border: 1px solid #252525;
+
+        color: #999999;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        transition: 0.25s ease;
+
+    }
+
+
+    .back-button:hover {
+
+        color: #ffffff;
+
+        border-color: #333333;
+
+    }
+
+
+    /* =====================================================
+       SECURITY
+    ===================================================== */
+
+    .security {
+
+        max-width: 900px;
+
+        margin: 30px auto 0;
+
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 15px;
+
+    }
+
+
+    .security-item {
+
+        padding: 22px;
+
+        background: #0d0d0d;
+
+        border: 1px solid #191919;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+    }
+
+
+    .security-item i {
+
+        color: #0000FF;
+
+        font-size: 18px;
+
+        margin-bottom: 12px;
+
+    }
+
+
+    .security-item strong {
+
+        display: block;
+
+        font-size: 11px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .security-item span {
+
+        color: #666666;
+
+        font-size: 9px;
+
+        line-height: 1.5;
+
+    }
+
+
+    /* =====================================================
+       DIVISOR
+    ===================================================== */
+
+    .section-divider {
+
+        width: min(1100px, calc(100% - 40px));
+
+        height: 1px;
+
+        margin: auto;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                #242424,
+                transparent
+            );
+
+    }
+
+
+    /* =====================================================
+       DISCORD
+    ===================================================== */
+
+    .discord-section {
+
+        width: min(1100px, calc(100% - 40px));
+
+        margin: auto;
+
+        padding: 20px 0 90px;
+
+    }
+
+
+    .discord-card {
+
+        position: relative;
+
+        overflow: hidden;
+
+        text-align: center;
+
+        padding: 55px 30px;
+
+        background: #0d0d0d;
+
+        border: 1px solid #202020;
+
+        border-radius: 18px;
+
+    }
+
+
+    .discord-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        width: 400px;
+
+        height: 200px;
+
+        left: 50%;
+
+        top: -130px;
+
+        transform: translateX(-50%);
+
+        background: rgba(0, 0, 255, 0.08);
+
+        filter: blur(50px);
+
+        border-radius: 50%;
+
+    }
+
+
+    .discord-icon {
+
+        position: relative;
+
+        width: 55px;
+
+        height: 55px;
+
+        margin: 0 auto 18px;
+
+        border-radius: 15px;
+
+        background: #151515;
+
+        border: 1px solid #252525;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #0000FF;
+
+        font-size: 22px;
+
+    }
+
+
+    .discord-card h2 {
+
+        position: relative;
+
+        font-size: 25px;
+
+        font-weight: 800;
+
+    }
+
+
+    .discord-card p {
+
+        position: relative;
+
+        max-width: 600px;
+
+        margin: 12px auto 25px;
+
+        color: #777777;
+
+        font-size: 12px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .discord-button {
+
+        position: relative;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        padding: 13px 20px;
+
+        border-radius: 9px;
+
+        background: #0000FF;
+
+        color: #ffffff;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        transition: 0.25s ease;
+
+    }
+
+
+    .discord-button:hover {
+
+        background: #0000FF;
+
+        transform: translateY(-2px);
+
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+
+        border-top: 1px solid #181818;
+
+        background: #060606;
+
+    }
+
+
+    .footer-inner {
+
+        width: min(1100px, calc(100% - 40px));
+
+        margin: auto;
+
+    }
+
+
+    .footer-top {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 60px;
+
+        padding: 60px 0 45px;
+
+    }
+
+
+    .footer-brand {
+
+        max-width: 360px;
+
+    }
+
+
+    .footer-description {
+
+        margin-top: 18px;
+
+        color: #666666;
+
+        font-size: 11px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .footer-links {
+
+        display: flex;
+
+        gap: 90px;
+
+    }
+
+
+    .footer-column {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+
+    .footer-column h4 {
+
+        color: #ffffff;
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .footer-column a {
+
+        color: #666666;
+
+        font-size: 10px;
+
+        transition: 0.2s ease;
+
+    }
+
+
+    .footer-column a:hover {
+
+        color: #0000FF;
+
+    }
+
+
+    .footer-bottom {
+
+        min-height: 65px;
+
+        border-top: 1px solid #151515;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+
+        color: #555555;
+
+        font-size: 9px;
+
+    }
+
+
+    .footer-bottom strong {
+
+        color: #888888;
+
+    }
+
+
+    .footer-socials a {
+
+        width: 34px;
+
+        height: 34px;
+
+        border-radius: 9px;
+
+        background: #101010;
+
+        border: 1px solid #1d1d1d;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #777777;
+
+        transition: 0.2s ease;
+
+    }
+
+
+    .footer-socials a:hover {
+
+        color: #0000FF;
+
+        border-color: rgba(0, 0, 255, 0.3);
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVO
+    ===================================================== */
+
+    @media (max-width: 850px) {
+
+        .main-nav a span {
+            display: none;
+        }
+
+
+        .main-nav a {
+            padding: 10px;
+        }
+
+
+        .purchase-wrapper {
+
+            grid-template-columns: 1fr;
+
+            max-width: 600px;
+
+        }
+
+
+        .security {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .footer-top {
+
+            flex-direction: column;
+
+        }
+
+
+        .footer-links {
+
+            gap: 60px;
+
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        header {
+            height: 72px;
+        }
+
+
+        .header-inner {
+
+            width: min(100% - 20px, 1200px);
+
+            gap: 10px;
+
+        }
+
+
+        .brand-text {
+            font-size: 17px;
+        }
+
+
+        .brand-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+        }
+
+
+        .main-nav {
+
+            gap: 1px;
+
+        }
+
+
+        .main-nav .nav-primary {
+            margin-left: 0;
+        }
+
+
+        .purchase-hero {
+
+            padding-top: 72px;
+
+        }
+
+
+        .hero-content {
+
+            padding: 60px 10px;
+
+        }
+
+
+        .hero-title {
+
+            font-size: 40px;
+
+            letter-spacing: -2px;
+
+        }
+
+
+        .section {
+
+            padding: 65px 0;
+
+        }
+
+
+        .product-card,
+        .checkout-card {
+
+            padding: 25px;
+
+        }
+
+
+        .footer-top {
+
+            padding: 45px 0 35px;
+
+        }
+
+
+        .footer-links {
+
+            gap: 40px;
+
+        }
+
+
+        .footer-bottom {
+
+            padding: 18px 0;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+
+<div class="header-inner">
+
+
+    <a
+        href="{{ url_for('inicio') }}"
+        class="brand"
+        aria-label="Cidade Eclipse - Início"
+    >
+
+        <div class="brand-icon">
+
+            <i class="fa-solid fa-city"></i>
+
+        </div>
+
+
+        <div>
+
+            <div class="brand-text">
+
+                Cidade <span>Eclipse</span>
+
+            </div>
+
+
+            <span class="brand-subtitle">
+
+                SA:MP ROLEPLAY
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- =================================================
+         NAVEGAÇÃO
+    ================================================== -->
+
+    <nav
+        class="main-nav"
+        aria-label="Navegação principal"
+    >
+
+
+        <a
+            href="{{ url_for('inicio') }}"
+            title="Início"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Início
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('cidade') }}"
+            title="Cidade"
+        >
+
+            <i class="fa-solid fa-city"></i>
+
+            <span>
+                Cidade
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('loja') }}"
+            class="active"
+            title="Loja"
+        >
+
+            <i class="fa-solid fa-store"></i>
+
+            <span>
+                Loja
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ discord_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Discord"
+        >
+
+            <i class="fa-brands fa-discord"></i>
+
+            <span>
+                Discord
+            </span>
+
+        </a>
+
+
+        {% if session.get('cargo') in ['Ceo', 'Fundador', 'Programador'] %}
+
+        <a
+            href="{{ url_for('admin') }}"
+            class="nav-admin"
+            title="Painel Administrativo"
+        >
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Admin
+            </span>
+
+        </a>
+
+        {% endif %}
+
+
+        {% if session.get('usuario_id') %}
+
+        <a
+            href="{{ url_for('painel') }}"
+            class="nav-primary"
+            title="Painel"
+        >
+
+            <i class="fa-solid fa-gauge-high"></i>
+
+            <span>
+                Painel
+            </span>
+
+        </a>
+
+        {% else %}
+
+        <a
+            href="{{ url_for('login') }}"
+            class="nav-primary"
+            title="Entrar"
+        >
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+            <span>
+                Entrar
+            </span>
+
+        </a>
+
+        {% endif %}
+
+
+    </nav>
+
+</div>
+
+
+</header>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="purchase-hero">
+
+
+<div class="hero-content">
+
+
+    <div class="status-pill">
+
+        <span class="status-dot"></span>
+
+        LOJA OFICIAL CIDADE ECLIPSE
+
+    </div>
+
+
+    <h1 class="hero-title">
+
+        <span class="white">
+            Finalize sua compra.
+        </span>
+
+        <span class="red">
+            Conquiste sua vantagem.
+        </span>
+
+    </h1>
+
+
+    <p class="hero-description">
+
+        Você está a um passo de adquirir
+        seu produto oficial do Cidade Eclipse RPG.
+        Confira os detalhes abaixo e fale
+        diretamente com nosso vendedor.
+
+    </p>
+
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     PRODUTO
+========================================================= -->
+
+<section class="section">
+
+
+<div class="section-header">
+
+    <span class="section-kicker">
+        PRODUTO SELECIONADO
+    </span>
+
+
+    <h2 class="section-title">
+        Confira sua escolha.
+    </h2>
+
+
+    <p class="section-description">
+
+        Verifique as informações do produto
+        antes de entrar em contato com o vendedor.
+
+    </p>
+
+</div>
+
+
+
+<div class="purchase-wrapper">
+
+
+    <!-- =================================================
+         PRODUTO
+    ================================================== -->
+
+    <article class="product-card">
+
+
+        <div class="product-icon">
+
+            <i
+                class="fa-solid {{ produto.icone }}"
+            ></i>
+
+        </div>
+
+
+        <div class="product-tag">
+
+            CIDADE ECLIPSE
+
+        </div>
+
+
+        <h3>
+
+            {{ produto.nome }}
+
+        </h3>
+
+
+        <p class="product-description">
+
+            {{ produto.descricao }}
+
+        </p>
+
+
+        <div class="product-separator"></div>
+
+
+        <div class="price-label">
+
+            Valor do produto
+
+        </div>
+
+
+        <div class="price">
+
+            <span>
+                R$
+            </span>
+
+            {{ produto.preco }}
+
+        </div>
+
+
+    </article>
+
+
+
+    <!-- =================================================
+         CHECKOUT
+    ================================================== -->
+
+    <div class="checkout-card">
+
+
+        <h3 class="checkout-title">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            Confirmar compra
+
+        </h3>
+
+
+        <p class="checkout-subtitle">
+
+            Para finalizar sua aquisição,
+            entre em contato diretamente com
+            nosso vendedor pelo WhatsApp.
+
+        </p>
+
+
+        <div class="checkout-info">
+
+
+            <div class="checkout-item">
+
+                <i class="fa-solid fa-box"></i>
+
+                <span>
+                    Produto:
+                    <strong>
+                        {{ produto.nome }}
+                    </strong>
+                </span>
+
+            </div>
+
+
+            <div class="checkout-item">
+
+                <i class="fa-solid fa-money-bill"></i>
+
+                <span>
+                    Valor:
+                    <strong>
+                        R$ {{ produto.preco }}
+                    </strong>
+                </span>
+
+            </div>
+
+
+            <div class="checkout-item">
+
+                <i class="fa-solid fa-headset"></i>
+
+                <span>
+                    Atendimento direto com o vendedor
+                </span>
+
+            </div>
+
+
+            <div class="checkout-item">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Negociação através do canal oficial
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!--
+            COLOQUE AQUI A URL DO WHATSAPP
+            CASO ELA JÁ ESTEJA SENDO ENVIADA
+            PELO FLASK COMO "whatsapp_url".
+        -->
+
+        <a
+            href="{{ whatsapp_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-button"
+        >
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            FALAR COM O VENDEDOR
+
+        </a>
+
+
+        <a
+            href="{{ url_for('loja') }}"
+            class="back-button"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            VOLTAR PARA A LOJA
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =================================================
+     SEGURANÇA
+================================================== -->
+
+<div class="security">
+
+
+    <div class="security-item">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <strong>
+            Compra oficial
+        </strong>
+
+        <span>
+            Produto disponibilizado
+            pela Cidade Eclipse.
+        </span>
+
+    </div>
+
+
+    <div class="security-item">
+
+        <i class="fa-solid fa-bolt"></i>
+
+        <strong>
+            Atendimento rápido
+        </strong>
+
+        <span>
+            Fale diretamente com
+            nosso vendedor.
+        </span>
+
+    </div>
+
+
+    <div class="security-item">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <strong>
+            Processo seguro
+        </strong>
+
+        <span>
+            Negociação realizada
+            pelos canais oficiais.
+        </span>
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     DIVISOR
+========================================================= -->
+
+<div class="section-divider"></div>
+
+<!-- =========================================================
+     DISCORD
+========================================================= -->
+
+<section class="discord-section">
+
+
+<div class="discord-card">
+
+
+    <div class="discord-icon">
+
+        <i class="fa-brands fa-discord"></i>
+
+    </div>
+
+
+    <h2>
+        Precisa de ajuda?
+    </h2>
+
+
+    <p>
+
+        Entre no Discord oficial da Cidade Eclipse
+        para acompanhar novidades, tirar dúvidas
+        e ficar por dentro da comunidade.
+
+    </p>
+
+
+    <a
+        href="{{ discord_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="discord-button"
+    >
+
+        <i class="fa-brands fa-discord"></i>
+
+        ENTRAR NO DISCORD
+
+    </a>
+
+
+</div>
+
+
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+
+<div class="footer-inner">
+
+
+    <div class="footer-top">
+
+
+        <!-- MARCA -->
+
+        <div class="footer-brand">
+
+
+            <a
+                href="{{ url_for('inicio') }}"
+                class="brand"
+            >
+
+                <div class="brand-icon">
+
+                    <i class="fa-solid fa-city"></i>
+
+                </div>
+
+
+                <div>
+
+                    <div class="brand-text">
+
+                        Cidade <span>Eclipse</span>
+
+                    </div>
+
+
+                    <span class="brand-subtitle">
+
+                        SA:MP ROLEPLAY
+
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <p class="footer-description">
+
+                Uma nova experiência de SA:MP RPG.
+                Entre para Cidade Eclipse e construa
+                sua própria história.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- LINKS -->
+
+        <div class="footer-links">
+
+
+            <div class="footer-column">
+
+                <h4>
+                    NAVEGAÇÃO
+                </h4>
+
+
+                <a
+                    href="{{ url_for('inicio') }}"
+                >
+                    Início
+                </a>
+
+
+                <a
+                    href="{{ url_for('cidade') }}"
+                >
+                    Cidade
+                </a>
+
+
+                <a
+                    href="{{ url_for('loja') }}"
+                >
+                    Loja
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    COMUNIDADE
+                </h4>
+
+
+                <a
+                    href="{{ discord_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Discord
+                </a>
+
+
+                {% if session.get('usuario_id') %}
+
+
+                <a
+                    href="{{ url_for('painel') }}"
+                >
+                    Painel
+                </a>
+
+
+                {% else %}
+
+
+                <a
+                    href="{{ url_for('login') }}"
+                >
+                    Entrar
+                </a>
+
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- RODAPÉ INFERIOR -->
+
+    <div class="footer-bottom">
+
+
+        <div>
+
+            © 2026
+
+            <strong>
+                Cidade Eclipse RPG
+            </strong>
+
+            — Todos os direitos reservados.
+
+        </div>
+
+
+        <div class="footer-socials">
+
+
+            <a
+                href="{{ discord_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Discord"
+            >
+
+                <i class="fa-brands fa-discord"></i>
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</footer>
+
+</body>
+
+</html>

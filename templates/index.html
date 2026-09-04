@@ -1,0 +1,2948 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content=" Cidade Eclipse RPG — viva sua própria história em uma experiência SA:MP RPG."
+>
+
+<meta
+    name="theme-color"
+    content="#080808"
+>
+
+<title> Cidade Eclipse • SA:MP RPG</title>
+
+<!-- =====================================================
+     FAVICON
+====================================================== -->
+
+<link
+    rel="icon"
+    type="image/png"
+    href="{{ url_for('static', filename='img/favicon.png') }}"
+>
+
+<!-- =====================================================
+     FONTES
+====================================================== -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<!-- =====================================================
+     FONT AWESOME
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+>
+
+<style>
+
+    /* =====================================================
+       RESET
+    ====================================================== */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at 15% 10%,
+                rgba(25, 0, 255, 0.08),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 85% 80%,
+                rgba(25, 0, 255, 0.05),
+                transparent 28%
+            ),
+            #070707;
+
+        color: #ffffff;
+
+        font-family: "Poppins", sans-serif;
+
+        overflow-x: hidden;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    button,
+    a {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+        background: #0000FF;
+        color: #ffffff;
+    }
+
+    /* =====================================================
+       SCROLLBAR
+    ====================================================== */
+
+    ::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #050505;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #06003d;
+        border-radius: 20px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0000FF;
+    }
+
+    /* =====================================================
+       FUNDO DECORATIVO
+    ====================================================== */
+
+    .background-glow {
+        position: fixed;
+
+        width: 600px;
+        height: 600px;
+
+        border-radius: 50%;
+
+        filter: blur(130px);
+
+        pointer-events: none;
+
+        z-index: -10;
+
+        opacity: .25;
+    }
+
+    .glow-one {
+        top: -350px;
+        left: -250px;
+
+        background: rgba(0, 102, 255, .28);
+    }
+
+    .glow-two {
+        right: -350px;
+        bottom: -300px;
+
+        background: rgba(0, 102, 255, .18);
+    }
+
+    .background-grid {
+        position: fixed;
+
+        inset: 0;
+
+        background-image:
+            linear-gradient(
+                rgba(255,255,255,.018) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(255,255,255,.018) 1px,
+                transparent 1px
+            );
+
+        background-size: 55px 55px;
+
+        mask-image:
+            linear-gradient(
+                to bottom,
+                black,
+                transparent 80%
+            );
+
+        pointer-events: none;
+
+        z-index: -9;
+    }
+
+    /* =====================================================
+       HEADER
+    ====================================================== */
+
+    .site-header {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 78px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 6%;
+
+        background:
+            rgba(7, 7, 7, .82);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border-bottom: 1px solid rgba(0, 102, 255, .16);
+
+        z-index: 1000;
+
+        transition:
+            background .3s ease,
+            border-color .3s ease,
+            box-shadow .3s ease;
+    }
+
+    .site-header.scrolled {
+        background: rgba(5, 5, 5, .96);
+
+        border-bottom-color:
+            rgba(55, 0, 255, 0.28);
+
+        box-shadow:
+            0 15px 50px rgba(0,0,0,.45);
+    }
+
+    /* =====================================================
+       LOGO
+    ====================================================== */
+
+    .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+
+        text-decoration: none;
+
+        flex-shrink: 0;
+    }
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background:
+            linear-gradient(
+                145deg,
+                #000222,
+                #0e0e0e
+            );
+
+        border: 1px solid #000150;
+
+        border-radius: 11px;
+
+        color: #0000FF;
+
+        box-shadow:
+            0 0 25px rgba(76, 0, 255, 0.08);
+
+        transition: .3s;
+    }
+
+    .brand:hover .brand-icon {
+        transform: rotate(-4deg) scale(1.05);
+
+        border-color: #0000FF;
+
+        box-shadow:
+            0 0 30px rgba(17, 0, 255, 0.2);
+    }
+
+    .brand-text {
+        font-size: 22px;
+
+        line-height: 1;
+
+        font-weight: 800;
+
+        letter-spacing: -.8px;
+    }
+
+    .brand-text span {
+        color: #0000FF;
+
+        text-shadow:
+            0 0 20px rgba(17, 0, 255, 0.3);
+    }
+
+    .brand-subtitle {
+        display: block;
+
+        margin-top: 3px;
+
+        color: #555;
+
+        font-size: 7px;
+
+        font-weight: 700;
+
+        letter-spacing: 2px;
+    }
+
+    /* =====================================================
+       NAVEGAÇÃO
+    ====================================================== */
+
+    .main-nav {
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+    }
+
+    .main-nav a {
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+
+        min-height: 42px;
+
+        padding: 0 13px;
+
+        color: #777;
+
+        text-decoration: none;
+
+        font-size: 10px;
+
+        font-weight: 700;
+
+        letter-spacing: .2px;
+
+        border: 1px solid transparent;
+
+        border-radius: 9px;
+
+        transition:
+            color .25s ease,
+            background .25s ease,
+            border-color .25s ease,
+            transform .25s ease;
+    }
+
+    .main-nav a i {
+        color: #0300b0;
+
+        font-size: 12px;
+
+        transition: .25s;
+    }
+
+    .main-nav a:hover {
+        color: #ffffff;
+
+        background: #111111;
+
+        border-color: #252525;
+
+        transform: translateY(-1px);
+    }
+
+    .main-nav a:hover i {
+        color: #0000FF;
+    }
+
+    .main-nav a.active {
+        color: #ffffff;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(38, 0, 255, 0.11),
+                rgba(0,102,255,.035)
+            );
+
+        border-color:
+            rgba(0, 4, 255, 0.28);
+
+        box-shadow:
+            inset 0 0 20px rgba(0,102,255,.025);
+    }
+
+    .main-nav a.active i {
+        color: #0000FF;
+    }
+
+    /* =====================================================
+       BOTÃO PAINEL / ENTRAR
+    ====================================================== */
+
+    .nav-primary {
+        color: #ffffff !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0f00e3,
+                #001fa9
+            ) !important;
+
+        border-color:
+            #4133ff !important;
+
+        box-shadow:
+            0 8px 25px rgba(17, 0, 255, 0.12);
+    }
+
+    .nav-primary i {
+        color: #ffffff !important;
+    }
+
+    .nav-primary:hover {
+        background:
+            linear-gradient(
+                135deg,
+                #0000FF,
+                #1400c4
+            ) !important;
+
+        border-color:
+            #5855ff !important;
+
+        transform: translateY(-2px) !important;
+
+        box-shadow:
+            0 12px 35px rgba(17, 0, 255, 0.2);
+    }
+
+    /* =====================================================
+       BOTÃO ADMIN
+    ====================================================== */
+
+    .nav-admin {
+        color: #ffffff !important;
+
+        background: #111111 !important;
+
+        border-color:
+            #05004a !important;
+    }
+
+    .nav-admin i {
+        color: #0000FF !important;
+    }
+
+    .nav-admin:hover {
+        background: #080f20 !important;
+
+        border-color:
+            #09008b !important;
+    }
+
+    /* =====================================================
+       HERO
+    ====================================================== */
+
+    .hero {
+        position: relative;
+
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding:
+            150px 25px
+            100px;
+
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: "";
+
+        position: absolute;
+
+        top: 20%;
+        left: 50%;
+
+        width: 600px;
+        height: 600px;
+
+        transform:
+            translate(-50%, -50%);
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(4, 0, 255, 0.075),
+                transparent 68%
+            );
+
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+
+        width: 100%;
+        max-width: 1100px;
+
+        text-align: center;
+
+        animation:
+            heroEntrance .9s ease both;
+    }
+
+    /* =====================================================
+       STATUS
+    ====================================================== */
+
+    .status-pill {
+        display: inline-flex;
+
+        align-items: center;
+        gap: 9px;
+
+        padding: 8px 14px;
+
+        margin-bottom: 27px;
+
+        color: #5f5cff;
+
+        background:
+            rgba(0,102,255,.055);
+
+        border:
+            1px solid rgba(55, 0, 255, 0.25);
+
+        border-radius: 999px;
+
+        font-size: 8px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.8px;
+
+        box-shadow:
+            0 0 35px rgba(0,102,255,.04);
+    }
+
+    .status-dot {
+        position: relative;
+
+        width: 7px;
+        height: 7px;
+
+        background: #0000FF;
+
+        border-radius: 50%;
+
+        box-shadow:
+            0 0 12px rgba(17, 0, 255, 0.8);
+    }
+
+    .status-dot::after {
+        content: "";
+
+        position: absolute;
+
+        inset: -4px;
+
+        border: 1px solid rgba(17, 0, 255, 0.35);
+
+        border-radius: 50%;
+
+        animation:
+            pulse 1.8s infinite;
+    }
+
+    /* =====================================================
+       HERO TÍTULO
+    ====================================================== */
+
+    .hero-title {
+        max-width: 950px;
+
+        margin: auto;
+
+        font-size:
+            clamp(
+                48px,
+                7.4vw,
+                94px
+            );
+
+        line-height: .98;
+
+        font-weight: 800;
+
+        letter-spacing: -4px;
+    }
+
+    .hero-title .white {
+        display: block;
+
+        color: #ffffff;
+    }
+
+    .hero-title .red {
+        display: block;
+
+        color: #0000FF;
+
+        text-shadow:
+            0 0 45px rgba(0, 4, 255, 0.24);
+    }
+
+    .hero-description {
+        max-width: 670px;
+
+        margin:
+            27px auto 0;
+
+        color: #777;
+
+        font-size: 12px;
+
+        line-height: 1.9;
+
+        font-weight: 400;
+    }
+
+    /* =====================================================
+       HERO BOTÕES
+    ====================================================== */
+
+    .hero-actions {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        margin-top: 34px;
+    }
+
+    .button {
+        position: relative;
+
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 9px;
+
+        min-height: 46px;
+
+        padding:
+            0 20px;
+
+        border-radius: 9px;
+
+        text-decoration: none;
+
+        font-size: 9px;
+
+        font-weight: 800;
+
+        letter-spacing: .5px;
+
+        transition:
+            transform .25s ease,
+            background .25s ease,
+            border-color .25s ease,
+            box-shadow .25s ease;
+    }
+
+    .button:hover {
+        transform: translateY(-3px);
+    }
+
+    .button-primary {
+        color: #ffffff;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2b00ec,
+                #3200a8
+            );
+
+        border:
+            1px solid #5d38ff;
+
+        box-shadow:
+            0 12px 35px rgba(0,102,255,.15);
+    }
+
+    .button-primary:hover {
+        background:
+            linear-gradient(
+                135deg,
+                #0000FF,
+                rgba(54, 0, 250, 0.74)
+            );
+
+        box-shadow:
+            0 16px 45px rgba(17, 0, 255, 0.25);
+    }
+
+    .button-secondary {
+        color: #c1c1c1;
+
+        background: #111111;
+
+        border:
+            1px solid #292929;
+    }
+
+    .button-secondary:hover {
+        color: #ffffff;
+
+        background: #171717;
+
+        border-color: #444444;
+
+        box-shadow:
+            0 10px 30px rgba(0,0,0,.3);
+    }
+
+    .button i {
+        font-size: 12px;
+    }
+
+    /* =====================================================
+       HERO STATS
+    ====================================================== */
+
+    .hero-stats {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        max-width: 760px;
+
+        margin:
+            55px auto 0;
+
+        border:
+            1px solid #1e1e1e;
+
+        border-radius: 14px;
+
+        overflow: hidden;
+
+        background:
+            rgba(10,10,10,.75);
+
+        backdrop-filter: blur(10px);
+    }
+
+    .hero-stat {
+        position: relative;
+
+        padding:
+            21px 18px;
+
+        text-align: center;
+    }
+
+    .hero-stat:not(:last-child)::after {
+        content: "";
+
+        position: absolute;
+
+        right: 0;
+        top: 25%;
+
+        width: 1px;
+        height: 50%;
+
+        background: #252525;
+    }
+
+    .hero-stat i {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #0000FF;
+
+        font-size: 15px;
+    }
+
+    .hero-stat strong {
+        display: block;
+
+        color: #ffffff;
+
+        font-size: 10px;
+
+        font-weight: 700;
+    }
+
+    .hero-stat span {
+        display: block;
+
+        margin-top: 3px;
+
+        color: #555;
+
+        font-size: 7px;
+
+        font-weight: 500;
+    }
+
+    /* =====================================================
+       SCROLL INDICATOR
+    ====================================================== */
+
+    .scroll-indicator {
+        position: absolute;
+
+        bottom: 28px;
+        left: 50%;
+
+        transform:
+            translateX(-50%);
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 8px;
+
+        color: #444;
+
+        font-size: 7px;
+
+        font-weight: 700;
+
+        letter-spacing: 2px;
+    }
+
+    .scroll-line {
+        width: 1px;
+        height: 28px;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #0000FF,
+                transparent
+            );
+
+        animation:
+            scrollLine 1.8s infinite;
+    }
+
+    /* =====================================================
+       SEÇÕES
+    ====================================================== */
+
+    .section {
+        position: relative;
+
+        max-width: 1180px;
+
+        margin: 0 auto;
+
+        padding:
+            110px 25px;
+    }
+
+    .section-header {
+        max-width: 680px;
+
+        margin:
+            0 auto 50px;
+
+        text-align: center;
+    }
+
+    .section-kicker {
+        display: inline-block;
+
+        margin-bottom: 10px;
+
+        color: #0000FF;
+
+        font-size: 8px;
+
+        font-weight: 800;
+
+        letter-spacing: 2.5px;
+    }
+
+    .section-title {
+        color: #ffffff;
+
+        font-size:
+            clamp(27px, 4vw, 38px);
+
+        line-height: 1.15;
+
+        font-weight: 800;
+
+        letter-spacing: -1.5px;
+    }
+
+    .section-description {
+        margin-top: 11px;
+
+        color: #626262;
+
+        font-size: 10px;
+
+        line-height: 1.8;
+    }
+
+    /* =====================================================
+       DIVISOR
+    ====================================================== */
+
+    .section-divider {
+        width: 100%;
+
+        height: 1px;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                #07152f,
+                transparent
+            );
+    }
+
+    /* =====================================================
+       FEATURES
+    ====================================================== */
+
+    .features-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 15px;
+    }
+
+    .feature-card {
+        position: relative;
+
+        min-height: 225px;
+
+        padding: 27px;
+
+        overflow: hidden;
+
+        background:
+            linear-gradient(
+                145deg,
+                #111111,
+                #0c0c0c
+            );
+
+        border:
+            1px solid #222222;
+
+        border-radius: 14px;
+
+        transition:
+            transform .3s ease,
+            border-color .3s ease,
+            background .3s ease,
+            box-shadow .3s ease;
+    }
+
+    .feature-card::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 70px;
+        height: 2px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #0000FF,
+                transparent
+            );
+
+        opacity: .7;
+    }
+
+    .feature-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 150px;
+        height: 150px;
+
+        right: -80px;
+        bottom: -90px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(0,102,255,.06);
+
+        filter: blur(30px);
+
+        pointer-events: none;
+    }
+
+    .feature-card:hover {
+        transform:
+            translateY(-7px);
+
+        background:
+            linear-gradient(
+                145deg,
+                #080d1a,
+                #0e0e0e
+            );
+
+        border-color:
+            #08004c;
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.35);
+    }
+
+    .feature-icon {
+        width: 46px;
+        height: 46px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 22px;
+
+        background:
+            linear-gradient(
+                145deg,
+                #08142b,
+                #080d18
+            );
+
+        border:
+            1px solid #14004c;
+
+        border-radius: 11px;
+
+        color: #0000FF;
+
+        font-size: 16px;
+
+        box-shadow:
+            inset 0 0 20px rgba(0,102,255,.04);
+    }
+
+    .feature-number {
+        position: absolute;
+
+        top: 22px;
+        right: 24px;
+
+        color: #292929;
+
+        font-size: 25px;
+
+        font-weight: 800;
+    }
+
+    .feature-card h3 {
+        margin-bottom: 9px;
+
+        color: #ffffff;
+
+        font-size: 13px;
+
+        font-weight: 700;
+    }
+
+    .feature-card p {
+        color: #626262;
+
+        font-size: 9px;
+
+        line-height: 1.85;
+    }
+
+    /* =====================================================
+       SOBRE / EXPERIÊNCIA
+    ====================================================== */
+
+    .experience {
+        display: grid;
+
+        grid-template-columns:
+            1.1fr .9fr;
+
+        gap: 25px;
+
+        align-items: stretch;
+    }
+
+    .experience-main,
+    .experience-side {
+        border:
+            1px solid #222222;
+
+        border-radius: 16px;
+
+        background:
+            linear-gradient(
+                145deg,
+                #111111,
+                #0b0b0b
+            );
+    }
+
+    .experience-main {
+        position: relative;
+
+        min-height: 350px;
+
+        padding: 40px;
+
+        overflow: hidden;
+    }
+
+    .experience-main::before {
+        content: "";
+
+        position: absolute;
+
+        width: 350px;
+        height: 350px;
+
+        right: -150px;
+        top: -150px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(47, 0, 255, 0.12),
+                transparent 70%
+            );
+    }
+
+    .experience-label {
+        display: inline-flex;
+
+        align-items: center;
+        gap: 8px;
+
+        margin-bottom: 20px;
+
+        color: #0000FF;
+
+        font-size: 8px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.8px;
+    }
+
+    .experience-label i {
+        font-size: 10px;
+    }
+
+    .experience-main h3 {
+        max-width: 560px;
+
+        font-size:
+            clamp(
+                25px,
+                3vw,
+                36px
+            );
+
+        line-height: 1.15;
+
+        letter-spacing: -1px;
+    }
+
+    .experience-main h3 span {
+        color: #0000FF;
+    }
+
+    .experience-main p {
+        max-width: 570px;
+
+        margin-top: 18px;
+
+        color: #686868;
+
+        font-size: 10px;
+
+        line-height: 1.9;
+    }
+
+    .experience-list {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+        margin-top: 28px;
+    }
+
+    .experience-list-item {
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        padding: 11px;
+
+        color: #8a8a8a;
+
+        background: #0c0c0c;
+
+        border:
+            1px solid #1e1e1e;
+
+        border-radius: 8px;
+
+        font-size: 8px;
+
+        font-weight: 600;
+    }
+
+    .experience-list-item i {
+        color: #0000FF;
+
+        font-size: 10px;
+    }
+
+    .experience-side {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        padding: 35px;
+    }
+
+    .mini-stat {
+        padding:
+            18px 0;
+
+        border-bottom:
+            1px solid #1e1e1e;
+    }
+
+    .mini-stat:first-child {
+        padding-top: 0;
+    }
+
+    .mini-stat:last-child {
+        padding-bottom: 0;
+
+        border-bottom: 0;
+    }
+
+    .mini-stat strong {
+        display: block;
+
+        color: #ffffff;
+
+        font-size: 19px;
+
+        font-weight: 800;
+    }
+
+    .mini-stat strong span {
+        color: #0000FF;
+    }
+
+    .mini-stat p {
+        margin-top: 3px;
+
+        color: #555;
+
+        font-size: 8px;
+    }
+
+    /* =====================================================
+       CTA DISCORD
+    ====================================================== */
+
+    .discord-section {
+        max-width: 1180px;
+
+        margin: 0 auto;
+
+        padding:
+            20px 25px 110px;
+    }
+
+    .discord-card {
+        position: relative;
+
+        padding:
+            60px 35px;
+
+        overflow: hidden;
+
+        text-align: center;
+
+        background:
+            radial-gradient(
+                circle at center,
+                rgba(0,102,255,.09),
+                transparent 55%
+            ),
+            linear-gradient(
+                135deg,
+                #080b16,
+                #0c0c0c
+            );
+
+        border:
+            1px solid #0c0043;
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 25px 70px rgba(0,0,0,.25);
+    }
+
+    .discord-card::before,
+    .discord-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+        height: 180px;
+
+        border-radius: 50%;
+
+        border:
+            1px solid rgba(0,102,255,.1);
+    }
+
+    .discord-card::before {
+        top: -120px;
+        left: -80px;
+    }
+
+    .discord-card::after {
+        right: -80px;
+        bottom: -120px;
+    }
+
+    .discord-icon {
+        position: relative;
+
+        width: 60px;
+        height: 60px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin:
+            0 auto 20px;
+
+        color: #0000FF;
+
+        background:
+            #081329;
+
+        border:
+            1px solid #010053;
+
+        border-radius: 14px;
+
+        font-size: 24px;
+
+        box-shadow:
+            0 0 35px rgba(0,102,255,.1);
+    }
+
+    .discord-card h2 {
+        position: relative;
+
+        font-size:
+            clamp(
+                24px,
+                4vw,
+                35px
+            );
+
+        font-weight: 800;
+
+        letter-spacing: -1px;
+    }
+
+    .discord-card p {
+        position: relative;
+
+        max-width: 550px;
+
+        margin:
+            11px auto 25px;
+
+        color: #686868;
+
+        font-size: 10px;
+
+        line-height: 1.8;
+    }
+
+    /* =====================================================
+       FOOTER
+    ====================================================== */
+
+    .footer {
+        border-top:
+            1px solid #071226;
+
+        background:
+            #050505;
+    }
+
+    .footer-inner {
+        max-width: 1180px;
+
+        margin: auto;
+
+        padding:
+            45px 25px 25px;
+    }
+
+    .footer-top {
+        display: flex;
+
+        align-items: flex-start;
+        justify-content: space-between;
+
+        gap: 40px;
+
+        padding-bottom: 35px;
+    }
+
+    .footer-brand {
+        max-width: 340px;
+    }
+
+    .footer-brand .brand {
+        margin-bottom: 15px;
+    }
+
+    .footer-description {
+        color: #555;
+
+        font-size: 8px;
+
+        line-height: 1.8;
+    }
+
+    .footer-links {
+        display: flex;
+
+        gap: 55px;
+    }
+
+    .footer-column h4 {
+        margin-bottom: 14px;
+
+        color: #888;
+
+        font-size: 8px;
+
+        font-weight: 800;
+
+        letter-spacing: 1.3px;
+    }
+
+    .footer-column a {
+        display: block;
+
+        width: max-content;
+
+        margin-bottom: 8px;
+
+        color: #4f4f4f;
+
+        text-decoration: none;
+
+        font-size: 8px;
+
+        transition: .25s;
+    }
+
+    .footer-column a:hover {
+        color: #0000FF;
+
+        transform: translateX(3px);
+    }
+
+    .footer-bottom {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 20px;
+
+        padding-top: 22px;
+
+        border-top:
+            1px solid #151515;
+
+        color: #3f3f3f;
+
+        font-size: 7px;
+    }
+
+    .footer-bottom strong {
+        color: #666;
+    }
+
+    .footer-socials {
+        display: flex;
+
+        gap: 7px;
+    }
+
+    .footer-socials a {
+        width: 31px;
+        height: 31px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #555;
+
+        background: #0d0d0d;
+
+        border:
+            1px solid #202020;
+
+        border-radius: 8px;
+
+        text-decoration: none;
+
+        transition: .25s;
+    }
+
+    .footer-socials a:hover {
+        color: #0000FF;
+
+        border-color: #080050;
+
+        background: #080d1a;
+
+        transform:
+            translateY(-2px);
+    }
+
+    /* =====================================================
+       ANIMAÇÕES
+    ====================================================== */
+
+    @keyframes heroEntrance {
+
+        from {
+            opacity: 0;
+
+            transform:
+                translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+    }
+
+    @keyframes pulse {
+
+        0% {
+            opacity: .8;
+
+            transform: scale(.8);
+        }
+
+        70% {
+            opacity: 0;
+
+            transform: scale(1.6);
+        }
+
+        100% {
+            opacity: 0;
+
+            transform: scale(1.6);
+        }
+
+    }
+
+    @keyframes scrollLine {
+
+        0%,
+        100% {
+            opacity: .3;
+
+            transform:
+                scaleY(.7);
+        }
+
+        50% {
+            opacity: 1;
+
+            transform:
+                scaleY(1);
+        }
+
+    }
+
+    /* =====================================================
+       RESPONSIVIDADE — 1150PX
+    ====================================================== */
+
+    @media (max-width: 1150px) {
+
+        .site-header {
+            padding:
+                0 25px;
+        }
+
+        .main-nav a {
+            padding:
+                0 10px;
+        }
+
+        .main-nav a span {
+            font-size: 9px;
+        }
+
+    }
+
+    /* =====================================================
+       RESPONSIVIDADE — 950PX
+    ====================================================== */
+
+    @media (max-width: 950px) {
+
+        .brand-subtitle {
+            display: none;
+        }
+
+        .main-nav {
+            gap: 3px;
+        }
+
+        .main-nav a {
+            min-width: 38px;
+
+            padding:
+                0 9px;
+        }
+
+        .main-nav a span {
+            display: none;
+        }
+
+        .features-grid {
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+        .experience {
+            grid-template-columns:
+                1fr;
+        }
+
+        .experience-main {
+            min-height: auto;
+        }
+
+        .footer-top {
+            flex-direction: column;
+        }
+
+    }
+
+    /* =====================================================
+       RESPONSIVIDADE — 700PX
+    ====================================================== */
+
+    @media (max-width: 700px) {
+
+        .site-header {
+            height: 68px;
+
+            padding:
+                0 15px;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .brand-text {
+            font-size: 19px;
+        }
+
+        .main-nav {
+            gap: 2px;
+        }
+
+        .main-nav a {
+            min-width: 34px;
+
+            min-height: 36px;
+
+            padding:
+                0 7px;
+        }
+
+        .main-nav a i {
+            font-size: 11px;
+        }
+
+        .hero {
+            padding:
+                125px 18px
+                90px;
+        }
+
+        .hero-title {
+            letter-spacing: -2.5px;
+        }
+
+        .hero-description {
+            font-size: 10px;
+        }
+
+        .hero-stats {
+            grid-template-columns:
+                1fr;
+
+            max-width: 330px;
+        }
+
+        .hero-stat:not(:last-child)::after {
+            top: auto;
+            right: 10%;
+
+            bottom: 0;
+
+            width: 80%;
+            height: 1px;
+        }
+
+        .section {
+            padding:
+                80px 18px;
+        }
+
+        .features-grid {
+            grid-template-columns:
+                1fr;
+        }
+
+        .experience-main {
+            padding: 28px;
+        }
+
+        .experience-side {
+            padding: 28px;
+        }
+
+        .experience-list {
+            grid-template-columns:
+                1fr;
+        }
+
+        .discord-section {
+            padding:
+                10px 18px
+                80px;
+        }
+
+        .discord-card {
+            padding:
+                50px 22px;
+        }
+
+        .footer-inner {
+            padding:
+                40px 18px 20px;
+        }
+
+        .footer-links {
+            width: 100%;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+    }
+
+    /* =====================================================
+       RESPONSIVIDADE — 480PX
+    ====================================================== */
+
+    @media (max-width: 480px) {
+
+        .brand-text {
+            font-size: 17px;
+        }
+
+        .brand-icon {
+            width: 33px;
+            height: 33px;
+        }
+
+        .main-nav a {
+            min-width: 31px;
+
+            padding:
+                0 6px;
+        }
+
+        .nav-primary {
+            padding:
+                0 9px !important;
+        }
+
+        .hero-title {
+            font-size: 43px;
+
+            letter-spacing:
+                -2px;
+        }
+
+        .hero-actions {
+            flex-direction: column;
+        }
+
+        .button {
+            width: 100%;
+
+            max-width: 300px;
+        }
+
+        .footer-links {
+            flex-direction: column;
+
+            gap: 25px;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+    }
+
+    /* =====================================================
+       ACESSIBILIDADE
+    ====================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            scroll-behavior: auto !important;
+
+            animation-duration:
+                .01ms !important;
+
+            animation-iteration-count:
+                1 !important;
+
+            transition-duration:
+                .01ms !important;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     ELEMENTOS DE FUNDO
+====================================================== -->
+
+<div class="background-glow glow-one"></div>
+
+<div class="background-glow glow-two"></div>
+
+<div class="background-grid"></div>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header
+    class="site-header"
+    id="siteHeader"
+>
+
+    <a
+        href="{{ url_for('inicio') }}"
+        class="brand"
+    >
+
+        <div class="brand-icon">
+
+            <i class="fa-solid fa-city"></i>
+
+        </div>
+
+        <div>
+
+            <div class="brand-text">
+
+                Cidade <span>Eclipse</span>
+
+            </div>
+
+            <span class="brand-subtitle">
+
+                SA:MP ROLEPLAY
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- =================================================
+         NAVEGAÇÃO
+    ================================================== -->
+
+    <nav
+        class="main-nav"
+        aria-label="Navegação principal"
+    >
+
+        <!-- INÍCIO -->
+
+        <a
+            href="{{ url_for('inicio') }}"
+            class="active"
+            title="Início"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Início
+            </span>
+
+        </a>
+
+
+        <!-- CIDADE -->
+
+        <a
+            href="{{ url_for('cidade') }}"
+            title="Cidade"
+        >
+
+            <i class="fa-solid fa-city"></i>
+
+            <span>
+                Cidade
+            </span>
+
+        </a>
+
+
+        <!-- LOJA -->
+
+        <a
+            href="{{ url_for('loja') }}"
+            title="Loja"
+        >
+
+            <i class="fa-solid fa-store"></i>
+
+            <span>
+                Loja
+            </span>
+
+        </a>
+
+
+        <!-- DISCORD -->
+
+        <a
+            href="{{ discord_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Discord"
+        >
+
+            <i class="fa-brands fa-discord"></i>
+
+            <span>
+                Discord
+            </span>
+
+        </a>
+
+
+        <!-- ADMIN -->
+
+        {% if session.get('cargo') in ['Ceo', 'Fundador', 'Programador'] %}
+
+        <a
+            href="{{ url_for('admin') }}"
+            class="nav-admin"
+            title="Painel Administrativo"
+        >
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Admin
+            </span>
+
+        </a>
+
+        {% endif %}
+
+
+        <!-- PAINEL / ENTRAR -->
+
+        {% if session.get('usuario_id') %}
+
+        <a
+            href="{{ url_for('painel') }}"
+            class="nav-primary"
+            title="Painel"
+        >
+
+            <i class="fa-solid fa-gauge-high"></i>
+
+            <span>
+                Painel
+            </span>
+
+        </a>
+
+        {% else %}
+
+        <a
+            href="{{ url_for('login') }}"
+            class="nav-primary"
+            title="Entrar"
+        >
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+            <span>
+                Entrar
+            </span>
+
+        </a>
+
+        {% endif %}
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<main>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="status-pill">
+
+                <span class="status-dot"></span>
+
+                SERVIDOR OFICIAL SA:MP RPG
+
+            </div>
+
+
+            <h1 class="hero-title">
+
+                <span class="white">
+                    Viva sua história.
+                </span>
+
+                <span class="red">
+                    Construa seu legado.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Bem-vindo a Cidade Eclipse RPG.
+                Uma cidade onde suas escolhas possuem consequências,
+                suas conquistas fazem parte da sua história e cada
+                jogador possui a oportunidade de construir seu próprio caminho.
+
+            </p>
+
+
+            <!-- =========================================
+                 BOTÕES
+            ========================================== -->
+
+            <div class="hero-actions">
+
+                {% if session.get('usuario_id') %}
+
+                <a
+                    href="{{ url_for('painel') }}"
+                    class="button button-primary"
+                >
+
+                    <i class="fa-solid fa-gauge-high"></i>
+
+                    ACESSAR PAINEL
+
+                </a>
+
+                </a>
+
+                {% else %}
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="button button-primary"
+                >
+
+                    <i class="fa-solid fa-gamepad"></i>
+
+                    JOGAR AGORA
+
+                </a>
+
+                {% endif %}
+
+
+                <a
+                    href="{{ discord_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button button-secondary"
+                >
+
+                    <i class="fa-brands fa-discord"></i>
+
+                    ENTRAR NO DISCORD
+
+                </a>
+
+            </div>
+
+
+            <!-- =========================================
+                 STATS
+            ========================================== -->
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <strong>
+                        Comunidade
+                    </strong>
+
+                    <span>
+                        Faça parte da cidade
+                    </span>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <i class="fa-solid fa-building"></i>
+
+                    <strong>
+                        Cidade viva
+                    </strong>
+
+                    <span>
+                        Explore novas possibilidades
+                    </span>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <i class="fa-solid fa-gamepad"></i>
+
+                    <strong>
+                        SA:MP RPG
+                    </strong>
+
+                    <span>
+                        Viva o verdadeiro roleplay
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SCROLL -->
+
+        <div class="scroll-indicator">
+
+            SCROLL
+
+            <span class="scroll-line"></span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         DIVISOR
+    ================================================== -->
+
+    <div class="section-divider"></div>
+
+
+    <!-- =================================================
+         RECURSOS
+    ================================================== -->
+
+    <section
+        class="section"
+        id="recursos"
+    >
+
+        <div class="section-header">
+
+            <span class="section-kicker">
+               Cidade Eclipse
+            </span>
+
+            <h2 class="section-title">
+                Uma cidade feita para você.
+            </h2>
+
+            <p class="section-description">
+
+                Tudo foi pensado para criar uma experiência
+                de roleplay envolvente, dinâmica e cheia de
+                possibilidades.
+
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+
+            <!-- CARD 01 -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    01
+                </span>
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <h3>
+                    Comunidade
+                </h3>
+
+                <p>
+
+                    Conheça novos jogadores, participe de
+                    histórias e faça parte de uma comunidade
+                    que ajuda a construir o universo de Cidade Eclipse.
+
+                </p>
+
+            </article>
+
+
+            <!-- CARD 02 -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    02
+                </span>
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-city"></i>
+
+                </div>
+
+                <h3>
+                    Cidade viva
+                </h3>
+
+                <p>
+
+                    Explore diferentes regiões, estabelecimentos,
+                    organizações e locais criados para tornar
+                    a cidade cada vez mais imersiva.
+
+                </p>
+
+            </article>
+
+
+            <!-- CARD 03 -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    03
+                </span>
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-ranking-star"></i>
+
+                </div>
+
+                <h3>
+                    Evolução
+                </h3>
+
+                <p>
+
+                    Comece sua jornada do zero, conquiste seus
+                    objetivos e evolua até se tornar uma das
+                    maiores referências da cidade.
+
+                </p>
+
+            </article>
+
+
+            <!-- CARD 04 -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    04
+                </span>
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                </div>
+
+                <h3>
+                    Organizações
+                </h3>
+
+                <p>
+
+                    Escolha seu caminho, entre para organizações,
+                    participe de operações e construa uma carreira
+                    dentro do roleplay.
+
+                </p>
+
+            </article>
+
+
+            <!-- CARD 05 -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    05
+                </span>
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-car"></i>
+
+                </div>
+
+                <h3>
+                    Veículos
+                </h3>
+
+                <p>
+
+                    Tenha seus próprios veículos e aproveite
+                    a liberdade de percorrer as ruas de Cidade Eclipse
+                    enquanto constrói seu patrimônio.
+
+                </p>
+
+            </article>
+
+
+            <!-- CARD 06 -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    06
+                </span>
+
+                <div class="feature-icon">
+
+                    <i class="fa-solid fa-store"></i>
+
+                </div>
+
+                <h3>
+                    Loja oficial
+                </h3>
+
+                <p>
+
+                    Encontre itens, vantagens e produtos especiais
+                    na loja oficial do Cidade Eclipse para personalizar
+                    ainda mais sua experiência.
+
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         DIVISOR
+    ================================================== -->
+
+    <div class="section-divider"></div>
+
+
+    <!-- =================================================
+         EXPERIÊNCIA
+    ================================================== -->
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <span class="section-kicker">
+                SUA JORNADA
+            </span>
+
+            <h2 class="section-title">
+                Aqui, cada escolha conta.
+            </h2>
+
+            <p class="section-description">
+
+                Não existe apenas um caminho.
+                Você decide quem será dentro de Cidade Eclipse.
+
+            </p>
+
+        </div>
+
+
+        <div class="experience">
+
+
+            <!-- ESQUERDA -->
+
+            <div class="experience-main">
+
+                <div class="experience-label">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    CONSTRUA SUA HISTÓRIA
+
+                </div>
+
+
+                <h3>
+
+                    Comece pequeno.
+
+                    <span>
+                        Termine como uma lenda.
+                    </span>
+
+                </h3>
+
+
+                <p>
+
+                    Entre na cidade, encontre seu caminho,
+                    faça contatos, conquiste dinheiro,
+                    adquira propriedades, participe de
+                    organizações e construa uma história
+                    que será lembrada.
+
+                </p>
+
+
+                <div class="experience-list">
+
+                    <div class="experience-list-item">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Personagens únicos
+
+                    </div>
+
+                    <div class="experience-list-item">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Economia dinâmica
+
+                    </div>
+
+                    <div class="experience-list-item">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Organizações
+
+                    </div>
+
+                    <div class="experience-list-item">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        Grandes oportunidades
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIREITA -->
+
+            <div class="experience-side">
+
+                <div class="mini-stat">
+
+                    <strong>
+                        01 <span>•</span>
+                    </strong>
+
+                    <p>
+                        Crie seu personagem
+                    </p>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        02 <span>•</span>
+                    </strong>
+
+                    <p>
+                        Encontre seu caminho
+                    </p>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        03 <span>•</span>
+                    </strong>
+
+                    <p>
+                        Conquiste seu espaço
+                    </p>
+
+                </div>
+
+
+                <div class="mini-stat">
+
+                    <strong>
+                        04 <span>•</span>
+                    </strong>
+
+                    <p>
+                        Construa seu legado
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         DISCORD
+    ================================================== -->
+
+    <section class="discord-section">
+
+        <div class="discord-card">
+
+            <div class="discord-icon">
+
+                <i class="fa-brands fa-discord"></i>
+
+            </div>
+
+
+            <h2>
+                Faça parte da comunidade.
+            </h2>
+
+
+            <p>
+
+                Entre no Discord oficial do  Cidade Eclipse,
+                acompanhe novidades, participe da comunidade
+                e fique por dentro de tudo que acontece na cidade.
+
+            </p>
+
+
+            <a
+                href="{{ discord_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button button-primary"
+            >
+
+                <i class="fa-brands fa-discord"></i>
+
+                ENTRAR NO DISCORD
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+
+        <div class="footer-top">
+
+
+            <!-- MARCA -->
+
+            <div class="footer-brand">
+
+                <a
+                    href="{{ url_for('inicio') }}"
+                    class="brand"
+                >
+
+                    <div class="brand-icon">
+
+                        <i class="fa-solid fa-city"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="brand-text">
+
+                           Cidade <span> Eclipse </span>
+
+                        </div>
+
+                        <span class="brand-subtitle">
+
+                            SA:MP ROLEPLAY
+
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <p class="footer-description">
+
+                    Uma nova experiência de SA:MP RPG.
+                    Entre para Cidade Eclipse e construa
+                    sua própria história.
+
+                </p>
+
+            </div>
+
+
+            <!-- LINKS -->
+
+            <div class="footer-links">
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        NAVEGAÇÃO
+                    </h4>
+
+                    <a
+                        href="{{ url_for('inicio') }}"
+                    >
+                        Início
+                    </a>
+
+                    <a
+                        href="{{ url_for('cidade') }}"
+                    >
+                        Cidade
+                    </a>
+
+                    <a
+                        href="{{ url_for('loja') }}"
+                    >
+                        Loja
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        COMUNIDADE
+                    </h4>
+
+                    <a
+                        href="{{ discord_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Discord
+                    </a>
+
+                    {% if session.get('usuario_id') %}
+
+                    <a
+                        href="{{ url_for('chat') }}"
+                    >
+                        Chat
+                    </a>
+
+                    <a
+                        href="{{ url_for('painel') }}"
+                    >
+                        Painel
+                    </a>
+
+                    {% else %}
+
+                    <a
+                        href="{{ url_for('login') }}"
+                    >
+                        Entrar
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- RODAPÉ INFERIOR -->
+
+        <div class="footer-bottom">
+
+            <div>
+
+                © 2026
+                <strong>
+                    Cidade Eclipse RPG
+                </strong>
+
+                — Todos os direitos reservados.
+
+            </div>
+
+
+            <div class="footer-socials">
+
+                <a
+                    href="{{ discord_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Discord"
+                >
+
+                    <i class="fa-brands fa-discord"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+    /*
+     * Header dinâmico ao rolar a página
+     */
+
+    const header =
+        document.getElementById("siteHeader");
+
+
+    function updateHeader() {
+
+        if (window.scrollY > 30) {
+
+            header.classList.add("scrolled");
+
+        } else {
+
+            header.classList.remove("scrolled");
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        { passive: true }
+    );
+
+
+    updateHeader();
+
+</script>
+
+
+</body>
+
+</html>

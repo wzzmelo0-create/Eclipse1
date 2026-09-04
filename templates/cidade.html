@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="theme-color"
+    content="#090909"
+>
+
+<meta
+    name="description"
+    content="Conheça os principais locais e pontos do Cidade Eclipse RPG."
+>
+
+<title>Cidade Eclipse • Cidade</title>
+
+
+<!-- =====================================================
+     FAVICON
+====================================================== -->
+
+<link
+    rel="icon"
+    type="image/png"
+    href="{{ url_for('static', filename='img/favicon.png') }}"
+>
+
+
+<!-- =====================================================
+     FONTES
+====================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+
+<!-- =====================================================
+     FONT AWESOME
+====================================================== -->
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+
+<!-- =====================================================
+     CSS
+====================================================== -->
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        padding-top: 78px;
+
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba(0, 102, 255, 0.10),
+                transparent 32%
+            ),
+            radial-gradient(
+                circle at top left,
+                rgba(0, 102, 255, 0.05),
+                transparent 28%
+            ),
+            #080808;
+
+        color: #ffffff;
+
+        font-family:
+            "Poppins",
+            sans-serif;
+
+        overflow-x: hidden;
+    }
+
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    button,
+    input,
+    textarea,
+    select {
+        font-family: inherit;
+    }
+
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+
+    /* ==================================================
+       SCROLLBAR
+    ================================================== */
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+
+    ::-webkit-scrollbar-track {
+        background: #080808;
+    }
+
+
+    ::-webkit-scrollbar-thumb {
+
+        background: #2b2b2b;
+
+        border-radius: 10px;
+    }
+
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #0000FF;
+    }
+
+
+    /* ==================================================
+       HEADER
+    ================================================== */
+
+    .site-header {
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 78px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 6%;
+
+        background:
+            rgba(7, 7, 7, .82);
+
+        backdrop-filter:
+            blur(18px);
+
+        -webkit-backdrop-filter:
+            blur(18px);
+
+        border-bottom:
+            1px solid rgba(0,102,255,.16);
+
+        z-index: 1000;
+
+        transition:
+            background .3s ease,
+            border-color .3s ease,
+            box-shadow .3s ease;
+    }
+
+
+    .site-header.scrolled {
+
+        background:
+            rgba(5, 5, 5, .96);
+
+        border-bottom-color:
+            rgba(0,102,255,.28);
+
+        box-shadow:
+            0 15px 50px rgba(0,0,0,.45);
+    }
+
+
+    /* ==================================================
+       LOGO
+    ================================================== */
+
+    .brand {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        text-decoration: none;
+
+        flex-shrink: 0;
+    }
+
+
+    .brand-icon {
+
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        background:
+            linear-gradient(
+                145deg,
+                #001a33,
+                #0e0e0e
+            );
+
+        border:
+            1px solid #003d80;
+
+        border-radius: 11px;
+
+        color: #0000FF;
+
+        box-shadow:
+            0 0 25px rgba(0,102,255,.08);
+
+        transition: .3s;
+    }
+
+
+    .brand:hover .brand-icon {
+
+        transform:
+            rotate(-4deg)
+            scale(1.05);
+
+        border-color:
+            #0000FF;
+
+        box-shadow:
+            0 0 30px rgba(0,102,255,.2);
+    }
+
+
+    .brand-text {
+
+        font-size: 22px;
+
+        line-height: 1;
+
+        font-weight: 800;
+
+        letter-spacing: -.8px;
+    }
+
+
+    .brand-text span {
+
+        color: #0000FF;
+
+        text-shadow:
+            0 0 20px rgba(0,102,255,.3);
+    }
+
+
+    .brand-subtitle {
+
+        display: block;
+
+        margin-top: 3px;
+
+        color: #555;
+
+        font-size: 7px;
+
+        font-weight: 700;
+
+        letter-spacing: 2px;
+    }
+
+
+    /* ==================================================
+       NAVEGAÇÃO
+    ================================================== */
+
+    .main-nav {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+    }
+
+
+    .main-nav a {
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+
+        min-height: 42px;
+
+        padding: 0 13px;
+
+        color: #777;
+
+        text-decoration: none;
+
+        font-size: 10px;
+
+        font-weight: 700;
+
+        letter-spacing: .2px;
+
+        border:
+            1px solid transparent;
+
+        border-radius: 9px;
+
+        transition:
+            color .25s ease,
+            background .25s ease,
+            border-color .25s ease,
+            transform .25s ease;
+    }
+
+
+    .main-nav a i {
+
+        color: #0052cc;
+
+        font-size: 12px;
+
+        transition: .25s;
+    }
+
+
+    .main-nav a:hover {
+
+        color: #ffffff;
+
+        background:
+            #111111;
+
+        border-color:
+            #252525;
+
+        transform:
+            translateY(-1px);
+    }
+
+
+    .main-nav a:hover i {
+        color: #0000FF;
+    }
+
+
+    /* ==================================================
+       CIDADE ATIVA
+    ================================================== */
+
+    .main-nav a.active {
+
+        color: #ffffff;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(0,102,255,.11),
+                rgba(0,102,255,.035)
+            );
+
+        border-color:
+            rgba(0,102,255,.28);
+
+        box-shadow:
+            inset 0 0 20px rgba(0,102,255,.025);
+    }
+
+
+    .main-nav a.active i {
+        color: #0000FF;
+    }
+
+
+    /* ==================================================
+       BOTÃO ENTRAR / PAINEL
+    ================================================== */
+
+    .nav-primary {
+
+        color: #ffffff !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0000FF,
+                #004dcc
+            ) !important;
+
+        border-color:
+            #3385ff !important;
+
+        box-shadow:
+            0 8px 25px rgba(0,102,255,.18);
+    }
+
+
+    .nav-primary i {
+        color: #ffffff !important;
+    }
+
+
+    .nav-primary:hover {
+
+        background:
+            linear-gradient(
+                135deg,
+                #0000FF,
+                #0000FF
+            ) !important;
+
+        border-color:
+            #66a3ff !important;
+
+        transform:
+            translateY(-2px);
+    }
+
+
+    /* ==================================================
+       ADMIN
+    ================================================== */
+
+    .admin-btn {
+        color: #66a3ff !important;
+    }
+
+
+    /* ==================================================
+       ALERTAS
+    ================================================== */
+
+    .alerts {
+
+        position: fixed;
+
+        top: 92px;
+        right: 25px;
+
+        z-index: 2000;
+
+        width:
+            min(
+                400px,
+                calc(100% - 40px)
+            );
+    }
+
+
+    .alert {
+
+        padding: 14px 18px;
+
+        margin-bottom: 10px;
+
+        border-radius: 12px;
+
+        background: #151515;
+
+        border:
+            1px solid #2b2b2b;
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.45);
+
+        font-size: 13px;
+
+        transition:
+            opacity .35s ease,
+            transform .35s ease;
+    }
+
+
+    .alert.sucesso {
+        border-color:
+            rgba(0,200,100,.35);
+    }
+
+
+    .alert.erro {
+        border-color:
+            rgba(0,102,255,.4);
+    }
+
+
+    /* ==================================================
+       CONTAINER
+    ================================================== */
+
+    .container {
+
+        width:
+            min(
+                1380px,
+                92%
+            );
+
+        margin:
+            0 auto;
+    }
+
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
+    .hero {
+
+        position: relative;
+
+        min-height: 500px;
+
+        display: flex;
+
+        align-items: center;
+
+        overflow: hidden;
+
+        border-bottom:
+            1px solid rgba(255,255,255,.05);
+    }
+
+
+    .hero::before {
+
+        content: "";
+
+        position: absolute;
+
+        width: 650px;
+        height: 650px;
+
+        top: -300px;
+        right: -180px;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(0,102,255,.18),
+                transparent 68%
+            );
+
+        pointer-events: none;
+    }
+
+
+    .hero::after {
+
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background:
+            linear-gradient(
+                90deg,
+                #080808 0%,
+                rgba(8,8,8,.96) 40%,
+                rgba(8,8,8,.72) 100%
+            );
+
+        pointer-events: none;
+    }
+
+
+    .hero-content {
+
+        position: relative;
+
+        z-index: 2;
+
+        max-width: 800px;
+
+        padding: 80px 0;
+
+        animation:
+            fadeUp .7s ease both;
+    }
+
+
+    /* ==================================================
+       BADGE
+    ================================================== */
+
+    .badge {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        padding: 8px 13px;
+
+        margin-bottom: 22px;
+
+        border-radius: 999px;
+
+        border:
+            1px solid rgba(0,102,255,.25);
+
+        background:
+            rgba(0,102,255,.07);
+
+        color: #66a3ff;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        letter-spacing: 1.2px;
+    }
+
+
+    .badge i {
+        font-size: 12px;
+    }
+
+
+    /* ==================================================
+       HERO TÍTULO
+    ================================================== */
+
+    .hero h1 {
+
+        font-size:
+            clamp(
+                42px,
+                6vw,
+                76px
+            );
+
+        line-height: 1.02;
+
+        letter-spacing: -3px;
+
+        font-weight: 800;
+
+        margin-bottom: 24px;
+    }
+
+
+    .hero h1 span {
+
+        display: block;
+
+        color: #0000FF;
+
+        text-shadow:
+            0 0 40px rgba(0,102,255,.18);
+    }
+
+
+    .hero-description {
+
+        max-width: 700px;
+
+        color: #929292;
+
+        font-size: 15px;
+
+        line-height: 1.9;
+    }
+
+
+    /* ==================================================
+       STATS
+    ================================================== */
+
+    .stats {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        margin-top: 38px;
+    }
+
+
+    .stat {
+
+        min-width: 150px;
+
+        display: grid;
+
+        grid-template-columns:
+            36px auto;
+
+        column-gap: 10px;
+
+        padding: 14px 16px;
+
+        border:
+            1px solid rgba(255,255,255,.07);
+
+        border-radius: 14px;
+
+        background:
+            rgba(255,255,255,.025);
+    }
+
+
+    .stat i {
+
+        grid-row:
+            span 2;
+
+        width: 36px;
+        height: 36px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 10px;
+
+        background:
+            rgba(0,102,255,.10);
+
+        color: #0000FF;
+    }
+
+
+    .stat strong {
+
+        font-size: 13px;
+
+        font-weight: 700;
+    }
+
+
+    .stat span {
+
+        color: #686868;
+
+        font-size: 10px;
+    }
+
+
+    /* ==================================================
+       SEÇÃO
+    ================================================== */
+
+    .section {
+        padding: 75px 0;
+    }
+
+
+    .section-heading {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 16px;
+
+        margin-bottom: 28px;
+    }
+
+
+    .section-icon {
+
+        width: 48px;
+        height: 48px;
+
+        flex-shrink: 0;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 13px;
+
+        background:
+            rgba(0,102,255,.10);
+
+        border:
+            1px solid rgba(0,102,255,.20);
+
+        color: #0000FF;
+
+        font-size: 18px;
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 25px;
+
+        font-weight: 750;
+
+        letter-spacing: -.7px;
+    }
+
+
+    .section-heading p {
+
+        margin-top: 2px;
+
+        color: #666666;
+
+        font-size: 12px;
+    }
+
+
+    /* ==================================================
+       GALERIA
+    ================================================== */
+
+    .gallery {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0,1fr)
+            );
+
+        gap: 18px;
+    }
+
+
+    .gallery-card {
+
+        position: relative;
+
+        height: 310px;
+
+        overflow: hidden;
+
+        border-radius: 18px;
+
+        background: #111111;
+
+        border:
+            1px solid rgba(255,255,255,.07);
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.20);
+
+        transition:
+            transform .35s ease,
+            border-color .35s ease,
+            box-shadow .35s ease;
+
+        animation:
+            fadeUp .6s ease both;
+    }
+
+
+    .gallery-card:hover {
+
+        transform:
+            translateY(-6px);
+
+        border-color:
+            rgba(0,102,255,.35);
+
+        box-shadow:
+            0 25px 60px rgba(0,0,0,.38),
+            0 0 30px rgba(0,102,255,.08);
+    }
+
+
+    .gallery-card img {
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        transition:
+            transform .7s
+            cubic-bezier(.2,.7,.2,1);
+    }
+
+
+    .gallery-card:hover img {
+        transform: scale(1.07);
+    }
+
+
+    /* ==================================================
+       OVERLAY
+    ================================================== */
+
+    .gallery-card::after {
+
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,.96) 0%,
+                rgba(0,0,0,.52) 45%,
+                rgba(0,0,0,.05) 100%
+            );
+
+        pointer-events: none;
+    }
+
+
+    .gallery-overlay {
+
+        position: absolute;
+
+        z-index: 2;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding: 22px;
+    }
+
+
+    .gallery-overlay h3 {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        font-size: 17px;
+
+        font-weight: 700;
+    }
+
+
+    .gallery-overlay h3 i {
+
+        color: #0000FF;
+
+        font-size: 14px;
+    }
+
+
+    .gallery-overlay span {
+
+        display: block;
+
+        margin-top: 5px;
+
+        color: #9b9b9b;
+
+        font-size: 11px;
+    }
+
+
+    /* ==================================================
+       BOXES DINÂMICOS
+    ================================================== */
+
+    .dynamic-card {
+
+        position: relative;
+
+        min-height: 290px;
+
+        overflow: hidden;
+
+        border-radius: 18px;
+
+        background: #111111;
+
+        border:
+            1px solid rgba(255,255,255,.07);
+
+        transition:
+            transform .3s ease,
+            border-color .3s ease;
+    }
+
+
+    .dynamic-card:hover {
+
+        transform:
+            translateY(-5px);
+
+        border-color:
+            rgba(0,102,255,.30);
+    }
+
+
+    .dynamic-card-image {
+
+        height: 180px;
+
+        overflow: hidden;
+    }
+
+
+    .dynamic-card-image img {
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        transition:
+            transform .5s ease;
+    }
+
+
+    .dynamic-card:hover
+    .dynamic-card-image img {
+
+        transform:
+            scale(1.06);
+    }
+
+
+    .dynamic-card-content {
+        padding: 18px 20px;
+    }
+
+
+    .dynamic-card-content h3 {
+
+        font-size: 16px;
+
+        font-weight: 700;
+    }
+
+
+    .dynamic-card-content p {
+
+        margin-top: 5px;
+
+        color: #777777;
+
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+
+
+    /* ==================================================
+       DISCORD
+    ================================================== */
+
+    .discord-section {
+
+        position: relative;
+
+        overflow: hidden;
+
+        margin:
+            30px 0 75px;
+
+        padding: 55px;
+
+        border-radius: 22px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #111111,
+                #0d0d0d
+            );
+
+        border:
+            1px solid rgba(255,255,255,.07);
+
+        text-align: center;
+    }
+
+
+    .discord-section::before {
+
+        content: "";
+
+        position: absolute;
+
+        width: 350px;
+        height: 350px;
+
+        top: -220px;
+        right: -80px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(0,102,255,.07);
+
+        filter:
+            blur(30px);
+    }
+
+
+    .main-icon {
+
+        position: relative;
+
+        width: 65px;
+        height: 65px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        margin:
+            0 auto 18px;
+
+        border-radius: 18px;
+
+        background:
+            rgba(0,102,255,.10);
+
+        color: #0000FF;
+
+        font-size: 27px;
+    }
+
+
+    .discord-section h2 {
+
+        position: relative;
+
+        font-size: 27px;
+
+        font-weight: 800;
+    }
+
+
+    .discord-section p {
+
+        position: relative;
+
+        max-width: 550px;
+
+        margin:
+            10px auto 25px;
+
+        color: #777777;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+
+    .discord-btn {
+
+        position: relative;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        padding: 13px 22px;
+
+        border-radius: 11px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0000FF,
+                #004dcc
+            );
+
+        color: #ffffff;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        box-shadow:
+            0 10px 30px rgba(0,102,255,.20);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    .discord-btn:hover {
+
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 15px 35px rgba(0,102,255,.30);
+    }
+
+
+    /* ==================================================
+       FOOTER
+    ================================================== */
+
+    footer {
+
+        border-top:
+            1px solid rgba(255,255,255,.06);
+
+        padding:
+            30px 6%;
+
+        background:
+            #060606;
+    }
+
+
+    .footer-content {
+
+        width:
+            min(
+                1380px,
+                92%
+            );
+
+        margin: auto;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+    }
+
+
+    .footer-brand {
+
+        font-size: 14px;
+
+        font-weight: 700;
+    }
+
+
+    .footer-brand span {
+
+        display: block;
+
+        margin-top: 3px;
+
+        color: #555555;
+
+        font-size: 10px;
+
+        font-weight: 400;
+    }
+
+
+    .footer-copy {
+
+        color: #4d4d4d;
+
+        font-size: 10px;
+
+        text-align: right;
+    }
+
+
+    /* ==================================================
+       ANIMAÇÃO
+    ================================================== */
+
+    @keyframes fadeUp {
+
+        from {
+
+            opacity: 0;
+
+            transform:
+                translateY(20px);
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+    }
+
+
+    /* ==================================================
+       RESPONSIVO
+    ================================================== */
+
+    @media (max-width: 1100px) {
+
+        .gallery {
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+        }
+
+    }
+
+
+    @media (max-width: 800px) {
+
+        .site-header {
+
+            height: auto;
+
+            min-height: 72px;
+
+            padding:
+                14px 4%;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+        }
+
+
+        body {
+            padding-top: 90px;
+        }
+
+
+        .main-nav {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            padding-bottom: 3px;
+        }
+
+
+        .main-nav a {
+
+            flex-shrink: 0;
+
+            padding:
+                0 11px;
+        }
+
+
+        .main-nav a span {
+            display: none;
+        }
+
+
+        .main-nav a i {
+            font-size: 15px;
+        }
+
+
+        .hero {
+            min-height: 470px;
+        }
+
+
+        .hero-content {
+            padding: 65px 0;
+        }
+
+
+        .hero h1 {
+            letter-spacing: -2px;
+        }
+
+
+        .gallery {
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .gallery-card {
+            height: 280px;
+        }
+
+
+        .discord-section {
+            padding: 40px 22px;
+        }
+
+
+        .footer-content {
+
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+
+        .footer-copy {
+            text-align: left;
+        }
+
+    }
+
+
+    @media (max-width: 500px) {
+
+        .container {
+            width: 92%;
+        }
+
+
+        .brand-text {
+            font-size: 19px;
+        }
+
+
+        .brand-icon {
+
+            width: 36px;
+            height: 36px;
+        }
+
+
+        .brand-subtitle {
+            font-size: 6px;
+        }
+
+
+        .hero h1 {
+            font-size: 42px;
+        }
+
+
+        .hero-description {
+            font-size: 13px;
+        }
+
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr;
+        }
+
+
+        .stat {
+            width: 100%;
+        }
+
+
+        .section {
+            padding: 55px 0;
+        }
+
+
+        .section-heading h2 {
+            font-size: 21px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header
+    class="site-header"
+    id="siteHeader"
+>
+
+    <!-- LOGO -->
+
+    <a
+        href="{{ url_for('inicio') }}"
+        class="brand"
+    >
+
+        <div class="brand-icon">
+
+            <i class="fa-solid fa-city"></i>
+
+        </div>
+
+
+        <div>
+
+            <div class="brand-text">
+
+                Cidade <span>Eclipse</span>
+
+            </div>
+
+
+            <span class="brand-subtitle">
+
+                SA:MP ROLEPLAY
+
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <!-- =================================================
+         NAVEGAÇÃO
+    ================================================== -->
+
+    <nav
+        class="main-nav"
+        aria-label="Navegação principal"
+    >
+
+        <!-- INÍCIO -->
+
+        <a
+            href="{{ url_for('inicio') }}"
+            title="Início"
+        >
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Início
+            </span>
+
+        </a>
+
+
+        <!-- CIDADE -->
+
+        <a
+            href="{{ url_for('cidade') }}"
+            class="active"
+            title="Cidade"
+        >
+
+            <i class="fa-solid fa-city"></i>
+
+            <span>
+                Cidade
+            </span>
+
+        </a>
+
+
+        <!-- LOJA -->
+
+        <a
+            href="{{ url_for('loja') }}"
+            title="Loja"
+        >
+
+            <i class="fa-solid fa-store"></i>
+
+            <span>
+                Loja
+            </span>
+
+        </a>
+
+
+        <!-- DISCORD -->
+
+        <a
+            href="{{ discord_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Discord"
+        >
+
+            <i class="fa-brands fa-discord"></i>
+
+            <span>
+                Discord
+            </span>
+
+        </a>
+
+
+        <!-- ADMIN -->
+
+        {% if session.get('cargo') in [
+            'Programador',
+            'Fundador',
+            'Ceo'
+        ] %}
+
+        <a
+            href="{{ url_for('admin') }}"
+            class="admin-btn"
+            title="Admin"
+        >
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Admin
+            </span>
+
+        </a>
+
+        {% endif %}
+
+
+        <!-- PAINEL / ENTRAR -->
+
+        {% if session.get('usuario_id') %}
+
+        <a
+            href="{{ url_for('painel') }}"
+            class="nav-primary"
+            title="Painel"
+        >
+
+            <i class="fa-solid fa-gauge-high"></i>
+
+            <span>
+                Painel
+            </span>
+
+        </a>
+
+        {% else %}
+
+        <a
+            href="{{ url_for('login') }}"
+            class="nav-primary"
+            title="Entrar"
+        >
+
+            <i class="fa-solid fa-right-to-bracket"></i>
+
+            <span>
+                Entrar
+            </span>
+
+        </a>
+
+        {% endif %}
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     ALERTAS
+====================================================== -->
+
+<div class="alerts">
+
+    {% with messages = get_flashed_messages(
+        with_categories=true
+    ) %}
+
+        {% if messages %}
+
+            {% for categoria, mensagem in messages %}
+
+            <div class="alert {{ categoria }}">
+
+                {{ mensagem }}
+
+            </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+</div>
+
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="badge">
+
+                <i class="fa-solid fa-map-location-dot"></i>
+
+                EXPLORE A CIDADE
+
+            </div>
+
+
+            <h1>
+
+                Conheça o
+
+                <span>Cidade Eclipse</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Explore os principais locais da nossa cidade,
+                conheça os pontos mais importantes e descubra
+                tudo o que o Cidade Eclipse RPG tem para oferecer.
+
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <strong>Diversos</strong>
+
+                    <span>Locais</span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <i class="fa-solid fa-city"></i>
+
+                    <strong>Eclipse</strong>
+
+                    <span>Cidade RPG</span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <i class="fa-solid fa-gamepad"></i>
+
+                    <strong>SA:MP</strong>
+
+                    <span>Roleplay</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALERIA
+====================================================== -->
+
+<main class="container">
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div class="section-icon">
+
+                <i class="fa-solid fa-images"></i>
+
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Locais da cidade
+                </h2>
+
+                <p>
+                    Conheça alguns dos principais pontos do Cidade Eclipse
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="gallery">
+
+
+            <!-- SPAWN -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/spawn.png') }}"
+                    alt="Spawn Cidade Eclipse"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Spawn
+
+                    </h3>
+
+                    <span>
+                        Ponto inicial da cidade
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PMSP -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/pmsp.png') }}"
+                    alt="Departamento Policial"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Departamento Policial
+
+                    </h3>
+
+                    <span>
+                        Departamento Policial de São Paulo
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- PRF -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/prf.png') }}"
+                    alt="PRF Cidade Eclipse"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Polícia Rodoviária
+
+                    </h3>
+
+                    <span>
+                        Polícia Rodoviária Federal
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREFEITURA -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/prefeitura.png') }}"
+                    alt="Loterica"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-building-columns"></i>
+
+                        Loterica
+
+                    </h3>
+
+                    <span>
+                        Loterica
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- FAVELA -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/favela.png') }}"
+                    alt="Favela"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-house"></i>
+
+                        Favela
+
+                    </h3>
+
+                    <span>
+                        Uma das regiões perigosas da cidade
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOJINHA -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/lojinha.png') }}"
+                    alt="Praia"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-umbrella-beach"></i>
+
+                        Lojinha
+
+                    </h3>
+
+                    <span>
+                        Compre seus itens
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESMANCHE -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/desmanche.png') }}"
+                    alt="Delegacia"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-building-shield"></i>
+
+                        Desmanche
+
+                    </h3>
+
+                    <span>
+                        Desmanche da cidade
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- BANCO -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/banco.jpg') }}"
+                    alt="Banco"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-building-columns"></i>
+
+                        Banco
+
+                    </h3>
+
+                    <span>
+                        Serviços financeiros
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CENTRO -->
+
+            <div class="gallery-card">
+
+                <img
+                    src="{{ url_for('static', filename='img/cidade/centro.png') }}"
+                    alt="Centro"
+                >
+
+                <div class="gallery-overlay">
+
+                    <h3>
+
+                        <i class="fa-solid fa-city"></i>
+
+                        Centro
+
+                    </h3>
+
+                    <span>
+                        Região central da cidade
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 BOXES DINÂMICOS
+            ================================================== -->
+
+            {% if cidade_boxes %}
+
+                {% for box in cidade_boxes %}
+
+                <div class="dynamic-card">
+
+                    <div class="dynamic-card-image">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename=box['imagem']
+                            ) }}"
+                            alt="{{ box['titulo'] }}"
+                        >
+
+                    </div>
+
+
+                    <div class="dynamic-card-content">
+
+                        <h3>
+
+                            {% if box['icone'] %}
+
+                            <i
+                                class="{{ box['icone'] }}"
+                                style="
+                                    color:#0000FF;
+                                    margin-right:7px;
+                                "
+                            ></i>
+
+                            {% endif %}
+
+                            {{ box['titulo'] }}
+
+                        </h3>
+
+
+                        {% if box['descricao'] %}
+
+                        <p>
+                            {{ box['descricao'] }}
+                        </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DISCORD
+    ====================================================== -->
+
+    <section class="discord-section">
+
+        <i
+            class="fa-brands fa-discord main-icon"
+        ></i>
+
+
+        <h2>
+            Faça parte do Cidade Eclipse
+        </h2>
+
+
+        <p>
+
+            Entre para nossa comunidade e acompanhe
+            todas as novidades do servidor.
+
+        </p>
+
+
+        <a
+            href="{{ discord_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="discord-btn"
+        >
+
+            <i class="fa-brands fa-discord"></i>
+
+            ENTRAR NO DISCORD
+
+        </a>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+
+            Cidade Eclipse RPG
+
+            <span>
+                Servidor oficial de SA:MP RPG.
+            </span>
+
+        </div>
+
+
+        <div class="footer-copy">
+
+            © 2026 Cidade Eclipse RPG —
+            Todos os direitos reservados.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     SCRIPT
+====================================================== -->
+
+<script>
+
+    /* HEADER AO ROLAR */
+
+    const siteHeader =
+        document.getElementById("siteHeader");
+
+
+    function updateHeader() {
+
+        if (window.scrollY > 20) {
+
+            siteHeader.classList.add("scrolled");
+
+        } else {
+
+            siteHeader.classList.remove("scrolled");
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateHeader
+    );
+
+
+    updateHeader();
+
+
+    /* ALERTAS */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const alerts =
+                document.querySelectorAll(".alert");
+
+
+            alerts.forEach(
+                function (alert) {
+
+                    setTimeout(
+                        function () {
+
+                            alert.style.opacity = "0";
+
+                            alert.style.transform =
+                                "translateY(-10px)";
+
+
+                            setTimeout(
+                                function () {
+
+                                    alert.remove();
+
+                                },
+                                350
+                            );
+
+                        },
+                        4500
+                    );
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
